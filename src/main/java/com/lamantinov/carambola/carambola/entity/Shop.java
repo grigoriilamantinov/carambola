@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "shops")
@@ -21,4 +22,20 @@ public class Shop {
 
     @Column(name = "shop_name")
     private String shopName;
+
+    @Column(name = "address")
+    private String address;
+
+    @Column(name = "phone")
+    private String phone;
+
+    @Column(name = "email")
+    private String email;
+
+    @ManyToMany
+    @JoinTable(
+        name = "cars_shops",
+        joinColumns = @JoinColumn(name = "shop_id"),
+        inverseJoinColumns = @JoinColumn(name = "car_id"))
+    List<Car> cars;
 }

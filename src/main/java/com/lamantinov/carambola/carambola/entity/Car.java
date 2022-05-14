@@ -7,6 +7,7 @@ import lombok.Setter;
 import org.springframework.stereotype.Service;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "cars")
@@ -28,8 +29,12 @@ public class Car {
 
     @Column(name = "net_worth")
     private int netWorth;
-//
-//    @OneToOne(mappedBy = "id")
-//    private Owner owner;
+
+    @ManyToMany
+    @JoinTable(
+        name = "cars_shops",
+        joinColumns = @JoinColumn(name = "car_id"),
+        inverseJoinColumns = @JoinColumn(name = "shop_id"))
+    List<Shop> shops;
 
 }
