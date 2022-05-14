@@ -1,9 +1,6 @@
 package com.lamantinov.carambola.carambola.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 
@@ -25,6 +22,17 @@ public class Owner {
     @Column(name = "last_name")
     private String lastName;
 
-    @Column(name = "car_id")
-    private int carId;
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "car_id", referencedColumnName = "id")
+    private Car car;
+
+    @Override
+    public String toString() {
+        return "Owner{" +
+            "id=" + id +
+            ", firstName='" + firstName + '\'' +
+            ", lastName='" + lastName + '\'' +
+            ", car=" + car +
+            '}';
+    }
 }

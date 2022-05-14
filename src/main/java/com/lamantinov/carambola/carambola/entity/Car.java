@@ -28,4 +28,8 @@ public class Car {
 
     @Column(name = "net_worth")
     private int netWorth;
+//
+//    @OneToOne(mappedBy = "id")
+//    private Owner owner;
+
 }
