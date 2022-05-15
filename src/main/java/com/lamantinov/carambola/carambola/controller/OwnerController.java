@@ -1,6 +1,7 @@
 package com.lamantinov.carambola.carambola.controller;
 
-import com.lamantinov.carambola.carambola.entity.Car;
+import com.lamantinov.carambola.carambola.dto.OwnersCarDTO;
+import com.lamantinov.carambola.carambola.dto.OwnersWithoutCarsDTO;
 import com.lamantinov.carambola.carambola.entity.Owner;
 import com.lamantinov.carambola.carambola.service.OwnerService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,14 +22,15 @@ public class OwnerController {
     }
 
     @GetMapping("/owners")
-    public List<Owner> showAllOwners() {
-        return ownerService.getAll();
+    public List<OwnersWithoutCarsDTO> showAllOwners() {
+        return ownerService.getAllWithoutCarsInfo();
     }
 
     @GetMapping("/owners/{id}")
-    public Owner getOwner(@PathVariable int id) {
-        return ownerService.getById(id);
+    public OwnersWithoutCarsDTO getOwner(@PathVariable int id) {
+        return ownerService.getByIdWithoutCar(id);
     }
+
     @PostMapping("/owners")
     public Owner addNewOwner(@RequestBody Owner owner) {
         ownerService.save(owner);
@@ -45,5 +47,11 @@ public class OwnerController {
     public String deleteOwner(@PathVariable int id) {
         ownerService.delete(id);
         return "Owner with ID = " + id + " was deleted";
+    }
+
+//    @GetMapping("/owners/{id}/car/")
+    @GetMapping("/owners/car/{id}")
+    public OwnersCarDTO getOwnersCar(@PathVariable int id) {
+        return ownerService.getOwnersCarById(id);
     }
 }

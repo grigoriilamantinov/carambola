@@ -1,6 +1,7 @@
-package com.lamantinov.carambola.carambola.entity;
+package com.lamantinov.carambola.carambola.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.lamantinov.carambola.carambola.entity.Shop;
 import lombok.*;
 
 @EqualsAndHashCode
@@ -8,17 +9,15 @@ import lombok.*;
 @NoArgsConstructor
 @Getter
 @Setter
-public class ShopWithoutCarsDTO {
+public class ShopsWithoutCarsDTO {
     private int id;
     private String shopName;
     private String address;
-
-    @JsonProperty("Телефон")
     private String phone;
     private String email;
 
-    public static ShopWithoutCarsDTO of(Shop shop) {
-        return new ShopWithoutCarsDTO(
+    public static ShopsWithoutCarsDTO of(Shop shop) {
+        return new ShopsWithoutCarsDTO(
             shop.getId(),
             shop.getShopName(),
             shop.getAddress(),

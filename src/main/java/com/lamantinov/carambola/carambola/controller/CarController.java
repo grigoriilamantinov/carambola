@@ -1,5 +1,6 @@
 package com.lamantinov.carambola.carambola.controller;
 
+import com.lamantinov.carambola.carambola.dto.CarsWithoutShopsDTO;
 import com.lamantinov.carambola.carambola.entity.Car;
 import com.lamantinov.carambola.carambola.service.CarService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,8 +21,8 @@ import java.util.List;
         }
 
         @GetMapping("/cars")
-        public List<Car> showAllCars() {
-            return carService.getAll();
+        public List<CarsWithoutShopsDTO> showAllCars() {
+            return carService.getAllWithoutShopsInfo();
         }
 
         @GetMapping("/cars/{id}")
