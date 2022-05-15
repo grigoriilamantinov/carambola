@@ -32,7 +32,7 @@ public class Shop {
     @Column(name = "email")
     private String email;
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(
         name = "cars_shops",
         joinColumns = @JoinColumn(name = "shop_id"),

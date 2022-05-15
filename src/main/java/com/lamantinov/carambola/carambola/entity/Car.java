@@ -1,9 +1,7 @@
 package com.lamantinov.carambola.carambola.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.*;
 import org.springframework.stereotype.Service;
 
 import javax.persistence.*;
@@ -30,7 +28,8 @@ public class Car {
     @Column(name = "net_worth")
     private int netWorth;
 
-    @ManyToMany
+    @JsonIgnore
+    @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(
         name = "cars_shops",
         joinColumns = @JoinColumn(name = "car_id"),
