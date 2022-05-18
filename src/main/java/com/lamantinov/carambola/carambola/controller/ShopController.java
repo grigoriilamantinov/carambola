@@ -1,7 +1,8 @@
 package com.lamantinov.carambola.carambola.controller;
 
+import com.lamantinov.carambola.carambola.dto.ShopWithCarsDTO;
 import com.lamantinov.carambola.carambola.entity.Shop;
-import com.lamantinov.carambola.carambola.dto.ShopsWithoutCarsDTO;
+import com.lamantinov.carambola.carambola.dto.ShopWithoutCarsDTO;
 import com.lamantinov.carambola.carambola.service.ShopService;
 import org.springframework.web.bind.annotation.*;
 
@@ -20,14 +21,18 @@ public class ShopController {
     }
 
     @GetMapping("/shops")
-    public List<ShopsWithoutCarsDTO> showAllShops() {
+    public List<ShopWithoutCarsDTO> showAllShops() {
         return shopService.getAllWithoutCarsInfo();
     }
 
     @GetMapping("/shops/{id}")
-    public Shop getShop(@PathVariable int id) {
-        Shop shop = shopService.getById(id);
-        return shop;
+    public ShopWithoutCarsDTO getShop(@PathVariable int id) {
+        return shopService.getShopWithoutCarsById(id);
+    }
+
+    @GetMapping("/shops/{id}/cars")
+    public ShopWithCarsDTO getShopWithCars(@PathVariable int id) {
+        return shopService.getCarsIntoShop(id);
     }
 
     @PostMapping("/shops")

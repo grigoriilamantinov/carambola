@@ -2,7 +2,7 @@ package com.lamantinov.carambola.carambola.service;
 
 import com.lamantinov.carambola.carambola.dao.OwnerRepository;
 import com.lamantinov.carambola.carambola.dto.OwnersCarDTO;
-import com.lamantinov.carambola.carambola.dto.OwnersWithoutCarsDTO;
+import com.lamantinov.carambola.carambola.dto.OwnerWithoutCarsDTO;
 import com.lamantinov.carambola.carambola.entity.Owner;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -26,9 +26,9 @@ public class OwnerService implements ServiceInterface<Owner> {
         return ownerRepository.findAll();
     }
 
-    public List<OwnersWithoutCarsDTO> getAllWithoutCarsInfo() {
+    public List<OwnerWithoutCarsDTO> getAllWithoutCarsInfo() {
         return ownerRepository.findAll().stream()
-            .map(owner -> OwnersWithoutCarsDTO.of(owner))
+            .map(owner -> OwnerWithoutCarsDTO.of(owner))
             .collect(Collectors.toList());
     }
 
@@ -38,7 +38,7 @@ public class OwnerService implements ServiceInterface<Owner> {
 
     @Override
     public void save(Owner owner) {
-        ownerRepository.save(owner);
+        ownerRepository.saveAndFlush(owner);
     }
 
     @Override
@@ -46,8 +46,8 @@ public class OwnerService implements ServiceInterface<Owner> {
         return ownerRepository.getById(id);
     }
 
-    public OwnersWithoutCarsDTO getByIdWithoutCar(int id) {
-        return OwnersWithoutCarsDTO.of(ownerRepository.getById(id));
+    public OwnerWithoutCarsDTO getByIdWithoutCar(int id) {
+        return OwnerWithoutCarsDTO.of(ownerRepository.getById(id));
     }
 
     @Override

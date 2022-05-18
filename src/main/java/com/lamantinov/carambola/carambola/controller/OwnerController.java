@@ -1,7 +1,7 @@
 package com.lamantinov.carambola.carambola.controller;
 
 import com.lamantinov.carambola.carambola.dto.OwnersCarDTO;
-import com.lamantinov.carambola.carambola.dto.OwnersWithoutCarsDTO;
+import com.lamantinov.carambola.carambola.dto.OwnerWithoutCarsDTO;
 import com.lamantinov.carambola.carambola.entity.Owner;
 import com.lamantinov.carambola.carambola.service.OwnerService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,12 +22,12 @@ public class OwnerController {
     }
 
     @GetMapping("/owners")
-    public List<OwnersWithoutCarsDTO> showAllOwners() {
+    public List<OwnerWithoutCarsDTO> showAllOwners() {
         return ownerService.getAllWithoutCarsInfo();
     }
 
     @GetMapping("/owners/{id}")
-    public OwnersWithoutCarsDTO getOwner(@PathVariable int id) {
+    public OwnerWithoutCarsDTO getOwner(@PathVariable int id) {
         return ownerService.getByIdWithoutCar(id);
     }
 

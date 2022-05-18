@@ -1,5 +1,6 @@
 package com.lamantinov.carambola.carambola.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -9,11 +10,10 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity
-@Table(name = "shops")
-@AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @Setter
+@Table(name = "shops")
 public class Shop {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -32,10 +32,32 @@ public class Shop {
     @Column(name = "email")
     private String email;
 
-    @ManyToMany(fetch = FetchType.LAZY)
+    @ManyToMany(
+        cascade = CascadeType.ALL,
+        fetch = FetchType.LAZY
+    )
     @JoinTable(
         name = "cars_shops",
         joinColumns = @JoinColumn(name = "shop_id"),
-        inverseJoinColumns = @JoinColumn(name = "car_id"))
-    List<Car> cars;
+        inverseJoinColumns = @JoinColumn(name = "car_id")
+    )
+    private List<Car> cars;
+
+    public Shop(int id, String shopName, String address, String phone, String email) {
+        this.id = id;
+        this.shopName = shopName;
+        this.address = address;
+        this.phone = phone;
+        this.email = email;
+    }
+
+    @Override
+    public String toString() {
+        return "id=" + id +
+            ", shopName='" + shopName + '\'' +
+            ", address='" + address + '\'' +
+            ", phone='" + phone + '\'' +
+            ", email='" + email + '\'' +
+            '}';
+    }
 }

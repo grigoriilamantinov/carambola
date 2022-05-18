@@ -1,8 +1,9 @@
 package com.lamantinov.carambola.carambola.service;
 
 import com.lamantinov.carambola.carambola.dao.ShopRepository;
+import com.lamantinov.carambola.carambola.dto.ShopWithCarsDTO;
 import com.lamantinov.carambola.carambola.entity.Shop;
-import com.lamantinov.carambola.carambola.dto.ShopsWithoutCarsDTO;
+import com.lamantinov.carambola.carambola.dto.ShopWithoutCarsDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -25,9 +26,9 @@ public class ShopService implements ServiceInterface <Shop> {
         return shopRepository.findAll();
     }
 
-    public List<ShopsWithoutCarsDTO> getAllWithoutCarsInfo() {
+    public List<ShopWithoutCarsDTO> getAllWithoutCarsInfo() {
         return shopRepository.findAll().stream()
-            .map(shop -> ShopsWithoutCarsDTO.of(shop))
+            .map(shop -> ShopWithoutCarsDTO.of(shop))
             .collect(Collectors.toList());
     }
 
@@ -39,6 +40,15 @@ public class ShopService implements ServiceInterface <Shop> {
     @Override
     public Shop getById(int id) {
         return shopRepository.getById(id);
+    }
+
+    public ShopWithCarsDTO getCarsIntoShop(int id) {
+        Shop shop = shopRepository.getById(id);
+        return ShopWithCarsDTO.of(shop);
+    }
+
+    public ShopWithoutCarsDTO getShopWithoutCarsById(int id) {
+        return ShopWithoutCarsDTO.of(shopRepository.getById(id));
     }
 
     @Override

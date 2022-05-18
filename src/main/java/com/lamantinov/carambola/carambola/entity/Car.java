@@ -9,7 +9,6 @@ import java.util.List;
 
 @Entity
 @Table(name = "cars")
-@AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @Setter
@@ -28,12 +27,27 @@ public class Car {
     @Column(name = "net_worth")
     private int netWorth;
 
-    @JsonIgnore
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(
         name = "cars_shops",
         joinColumns = @JoinColumn(name = "car_id"),
         inverseJoinColumns = @JoinColumn(name = "shop_id"))
-    List<Shop> shops;
+    private List<Shop> shops;
 
+    public Car(int id, String brand, int yearOfProduce, int netWorth) {
+        this.id = id;
+        this.brand = brand;
+        this.yearOfProduce = yearOfProduce;
+        this.netWorth = netWorth;
+    }
+
+    @Override
+    public String toString() {
+        return "Car{" +
+            "id=" + id +
+            ", brand='" + brand + '\'' +
+            ", yearOfProduce=" + yearOfProduce +
+            ", netWorth=" + netWorth +
+            '}';
+    }
 }
