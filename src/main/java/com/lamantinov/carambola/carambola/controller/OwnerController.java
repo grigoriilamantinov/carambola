@@ -50,7 +50,7 @@ public class OwnerController {
     }
 
 //    @GetMapping("/owners/{id}/car/")
-    @GetMapping("/owners/car/{id}")
+    @GetMapping("/owners/{id}/car")
     public OwnersCarDTO getOwnersCar(@PathVariable int id) {
         return ownerService.getOwnersCarById(id);
     }

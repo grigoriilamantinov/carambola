@@ -23,8 +23,7 @@ public class CarService implements ServiceInterface <Car> {
 
     @Override
     public List<Car> getAll() {
-        List <Car> allCars = carRepository.findAll();
-        return allCars;
+        return carRepository.findAll();
     }
 
     public List<CarWithoutShopsDTO> getAllWithoutShopsInfo() {
@@ -33,8 +32,8 @@ public class CarService implements ServiceInterface <Car> {
             .collect(Collectors.toList());
     }
 
-    public CarIntoShopsDTO getCarIntoShops(int id) {
-        return CarIntoShopsDTO.of(carRepository.getById(id));
+    public CarIntoShopsDTO getCarIntoShops(int carId) {
+        return CarIntoShopsDTO.of(carRepository.getById(carId));
     }
 
     @Override
@@ -43,16 +42,16 @@ public class CarService implements ServiceInterface <Car> {
     }
 
     @Override
-    public Car getById(int id) {
-        return carRepository.getById(id);
+    public Car getById(int carId) {
+        return carRepository.getById(carId);
     }
 
-    public CarWithoutShopsDTO getCarsWithoutShopsById(int id) {
-        return CarWithoutShopsDTO.of(carRepository.getById(id));
+    public CarWithoutShopsDTO getCarsWithoutShopsById(int carId) {
+        return CarWithoutShopsDTO.of(carRepository.getById(carId));
     }
 
     @Override
-    public void delete(int id) {
-        carRepository.deleteById(id);
+    public void delete(int carId) {
+        carRepository.deleteById(carId);
     }
 }

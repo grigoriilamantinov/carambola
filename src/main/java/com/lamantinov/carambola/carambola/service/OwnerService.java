@@ -32,8 +32,9 @@ public class OwnerService implements ServiceInterface<Owner> {
             .collect(Collectors.toList());
     }
 
-    public OwnersCarDTO getOwnersCarById(int id) {
-        return OwnersCarDTO.of(ownerRepository.getById(id));
+    public OwnersCarDTO getOwnersCarById(int ownerId) {
+        Owner owner = ownerRepository.getById(ownerId);
+        return OwnersCarDTO.of(owner);
     }
 
     @Override
@@ -42,16 +43,17 @@ public class OwnerService implements ServiceInterface<Owner> {
     }
 
     @Override
-    public Owner getById(int id) {
-        return ownerRepository.getById(id);
+    public Owner getById(int ownerId) {
+        return ownerRepository.getById(ownerId);
     }
 
-    public OwnerWithoutCarsDTO getByIdWithoutCar(int id) {
-        return OwnerWithoutCarsDTO.of(ownerRepository.getById(id));
+    public OwnerWithoutCarsDTO getByIdWithoutCar(int ownerId) {
+        Owner owner = ownerRepository.getById(ownerId);
+        return OwnerWithoutCarsDTO.of(owner);
     }
 
     @Override
-    public void delete(int id) {
-        ownerRepository.deleteById(id);
+    public void delete(int ownerId) {
+        ownerRepository.deleteById(ownerId);
     }
 }

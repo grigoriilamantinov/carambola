@@ -38,21 +38,22 @@ public class ShopService implements ServiceInterface <Shop> {
     }
 
     @Override
-    public Shop getById(int id) {
-        return shopRepository.getById(id);
+    public Shop getById(int shopId) {
+        return shopRepository.getById(shopId);
     }
 
-    public ShopWithCarsDTO getCarsIntoShop(int id) {
-        Shop shop = shopRepository.getById(id);
+    public ShopWithCarsDTO getCarsIntoShop(int shopId) {
+        Shop shop = shopRepository.getById(shopId);
         return ShopWithCarsDTO.of(shop);
     }
 
-    public ShopWithoutCarsDTO getShopWithoutCarsById(int id) {
-        return ShopWithoutCarsDTO.of(shopRepository.getById(id));
+    public ShopWithoutCarsDTO getShopWithoutCarsById(int shopId) {
+        Shop shop = shopRepository.getById(shopId);
+        return ShopWithoutCarsDTO.of(shop);
     }
 
     @Override
-    public void delete(int id) {
-        shopRepository.deleteById(id);
+    public void delete(int shopId) {
+        shopRepository.deleteById(shopId);
     }
 }

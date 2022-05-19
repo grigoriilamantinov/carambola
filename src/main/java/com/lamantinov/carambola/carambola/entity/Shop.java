@@ -11,6 +11,7 @@ import java.util.List;
 
 @Entity
 @NoArgsConstructor
+@AllArgsConstructor
 @Getter
 @Setter
 @Table(name = "shops")
@@ -42,14 +43,6 @@ public class Shop {
         inverseJoinColumns = @JoinColumn(name = "car_id")
     )
     private List<Car> cars;
-
-    public Shop(int id, String shopName, String address, String phone, String email) {
-        this.id = id;
-        this.shopName = shopName;
-        this.address = address;
-        this.phone = phone;
-        this.email = email;
-    }
 
     @Override
     public String toString() {

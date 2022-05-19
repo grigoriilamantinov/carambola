@@ -31,7 +31,7 @@ import java.util.List;
             return carService.getCarsWithoutShopsById(id);
         }
 
-        @GetMapping("/cars/shops/{id}")
+        @GetMapping("/cars/{id}/shops")
         public CarIntoShopsDTO getCarIntoAllShops(@PathVariable int id) {
             return carService.getCarIntoShops(id);
         }
