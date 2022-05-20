@@ -6,6 +6,7 @@ import com.lamantinov.carambola.carambola.entity.Shop;
 import lombok.*;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @EqualsAndHashCode
 @AllArgsConstructor
@@ -13,11 +14,19 @@ import java.util.List;
 @Getter
 @Setter
 public class CarIntoShopsDTO {
-    private List<Shop> shop;
+    private int id;
+    private String brand;
+    private List<ShopWithoutCarsDTO> shopWithoutCarsDTO;
 
     public static CarIntoShopsDTO of(Car car) {
         CarIntoShopsDTO carIntoShopsDTO = new CarIntoShopsDTO();
-        carIntoShopsDTO.setShop(car.getShops());
+        carIntoShopsDTO.setId(car.getId());
+        carIntoShopsDTO.setBrand(car.getBrand());
+        List<ShopWithoutCarsDTO> shopPojoList = car.getShops().stream()
+            .map(shop -> ShopWithoutCarsDTO.of(shop))
+            .collect(Collectors.toList());
+
+        carIntoShopsDTO.setShopWithoutCarsDTO(shopPojoList);
         return carIntoShopsDTO;
     }
 }
