@@ -49,7 +49,7 @@ public class CarServiceImpl implements CarService {
     }
 
     @Override
-    public CarWithoutShopsDTO getCarsWithoutShopsById(final int carId) {
+    public CarWithoutShopsDTO getCarWithoutShopsById(final int carId) {
         return CarWithoutShopsDTO.of(carRepository.getById(carId));
     }
 

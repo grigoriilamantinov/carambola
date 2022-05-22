@@ -12,5 +12,5 @@ public interface CarService extends CarambolaCRUD<Car> {
 
     CarIntoShopsDTO getCarIntoShops(int carId);
 
-    CarWithoutShopsDTO getCarsWithoutShopsById(int carId);
+    CarWithoutShopsDTO getCarWithoutShopsById(int carId);
 }

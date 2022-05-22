@@ -28,7 +28,7 @@ public class CarController {
 
     @GetMapping("/cars/{id}")
     public CarWithoutShopsDTO getCar(@PathVariable final int id) {
-        return carService.getCarsWithoutShopsById(id);
+        return carService.getCarWithoutShopsById(id);
     }
 
     @GetMapping("/cars/{id}/shops")
