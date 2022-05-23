@@ -32,7 +32,7 @@ class OwnerServiceImplTest {
     }
 
     @Test
-    void getAllWithoutCarsInfo() {
+    void shouldGetAllWithoutCarsInfo() {
         List<Owner> ownerList = new ArrayList<>(){{
             add(new Owner(1,"Григорий", "Капибаренко"));
             add(new Owner(2,"Виктор","Хомяков"));
@@ -51,7 +51,7 @@ class OwnerServiceImplTest {
     }
 
     @Test
-    void getOwnersCarById() {
+    void shouldGetOwnersCarById() {
         final int ownerId = 1;
 
         final Car car = new Car();
@@ -81,7 +81,7 @@ class OwnerServiceImplTest {
     }
 
     @Test
-    void getByIdWithoutCar() {
+    void shouldGetByIdWithoutCar() {
         final int ownerId = 1;
 
         final Owner owner = new Owner();

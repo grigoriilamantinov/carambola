@@ -33,7 +33,7 @@ class CarServiceImplTest {
     }
 
     @Test
-    void getAllWithoutShopsInfo() {
+    void shouldGetAllWithoutShopsInfo() {
         final List<Car> carList = new ArrayList<>(){{
             add(new Car(1, "BNW", 2000, 2000000));
             add(new Car(2, "Mlada", 2006, 1900000));
@@ -53,7 +53,7 @@ class CarServiceImplTest {
     }
 
     @Test
-    void getCarIntoShops() {
+    void shouldGetCarIntoShops() {
         final int carId = 0;
 
         final List<Shop> shopList = new ArrayList<>() {{
@@ -99,7 +99,7 @@ class CarServiceImplTest {
     }
 
     @Test
-    void getCarsWithoutShopsById() {
+    void shouldGetCarsWithoutShopsById() {
         final int carId = 1;
         final List<Car> carList = new ArrayList<>(){{
             add(new Car(1, "BNW", 2000, 2000000));
