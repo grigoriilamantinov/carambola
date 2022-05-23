@@ -34,12 +34,12 @@ class OwnerServiceImplTest {
     @Test
     void getAllWithoutCarsInfo() {
         List<Owner> ownerList = new ArrayList<>(){{
-            add(new Owner(1,"Григорий", "Капибарович"));
+            add(new Owner(1,"Григорий", "Капибаренко"));
             add(new Owner(2,"Виктор","Хомяков"));
         }};
 
         List<OwnerWithoutCarsDTO> exceptedResult = new ArrayList<>(){{
-            add(new OwnerWithoutCarsDTO(1,"Григорий", "Капибарович"));
+            add(new OwnerWithoutCarsDTO(1,"Григорий", "Капибаренко"));
             add(new OwnerWithoutCarsDTO(2,"Виктор","Хомяков"));
         }};
 

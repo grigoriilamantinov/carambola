@@ -57,8 +57,20 @@ class CarServiceImplTest {
         final int carId = 0;
 
         final List<Shop> shopList = new ArrayList<>() {{
-            add(new Shop(1, "HelloShop", "Moscow street", "546-23-12", "xq@mail.ru" ));
-            add(new Shop(2, "CarShop", "Village street", "126-23-62", "bi@mail.ru" ));
+            add(new Shop(
+                1,
+                "HelloShop",
+                "Moscow street",
+                "546-23-12",
+                "xq@mail.ru" )
+            );
+            add(new Shop(
+                2,
+                "CarShop",
+                "Village street",
+                "126-23-62",
+                "bi@mail.ru" )
+            );
         }};
 
         final List<ShopWithoutCarsDTO> shopWithoutCarsDTO = new ArrayList<>(){{
@@ -91,7 +103,7 @@ class CarServiceImplTest {
         final int carId = 1;
         final List<Car> carList = new ArrayList<>(){{
             add(new Car(1, "BNW", 2000, 2000000));
-            add(new Car(2, "Lada", 2006, 1900000));
+            add(new Car(2, "Mlada", 2006, 1900000));
         }};
 
         Car car = carList.get(carId);
