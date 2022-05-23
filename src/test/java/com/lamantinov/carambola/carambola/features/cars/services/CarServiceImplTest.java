@@ -33,35 +33,15 @@ class CarServiceImplTest {
     }
 
     @Test
-    void getAll() {
-        final List<Car> carList = new ArrayList<>(){{
-            add(new Car(1, "BNW", 2000, 2000000));
-            add(new Car(2, "Lada", 2006, 1900000));
-        }};
-
-        final var exceptedResult = new ArrayList<>(){{
-            add(carList.get(0));
-            add(carList.get(1));
-        }};
-
-        Mockito.when(carRepository.findAll()).thenReturn(carList);
-
-        final var actualResult = testable.getAll();
-
-        Assertions.assertEquals(exceptedResult, actualResult);
-        Mockito.verify(carRepository).findAll();
-    }
-
-    @Test
     void getAllWithoutShopsInfo() {
         final List<Car> carList = new ArrayList<>(){{
             add(new Car(1, "BNW", 2000, 2000000));
-            add(new Car(2, "Lada", 2006, 1900000));
+            add(new Car(2, "Mlada", 2006, 1900000));
         }};
 
         final List<CarWithoutShopsDTO> exceptedResult = new ArrayList<>(){{
             add(new CarWithoutShopsDTO(1, "BNW", 2000, 2000000));
-            add(new CarWithoutShopsDTO(2, "Lada", 2006, 1900000));
+            add(new CarWithoutShopsDTO(2, "Mlada", 2006, 1900000));
         }};
 
         Mockito.when(carRepository.findAll()).thenReturn(carList);
