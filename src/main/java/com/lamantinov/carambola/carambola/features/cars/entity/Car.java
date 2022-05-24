@@ -1,6 +1,9 @@
 package com.lamantinov.carambola.carambola.features.cars.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.lamantinov.carambola.carambola.features.shops.entity.Shop;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -20,6 +23,7 @@ import java.util.List;
 @Entity
 @Table(name = "cars")
 @NoArgsConstructor
+@AllArgsConstructor
 @Getter
 @Setter
 public class Car {
@@ -43,6 +47,13 @@ public class Car {
         joinColumns = @JoinColumn(name = "car_id"),
         inverseJoinColumns = @JoinColumn(name = "shop_id"))
     private List<Shop> shops;
+
+    public Car(int id, String brand, int yearOfProduce, int netWorth) {
+        this.id = id;
+        this.brand = brand;
+        this.yearOfProduce = yearOfProduce;
+        this.netWorth = netWorth;
+    }
 
     @Override
     public String toString() {

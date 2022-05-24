@@ -1,5 +1,7 @@
 package com.lamantinov.carambola.carambola.features.shops.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.lamantinov.carambola.carambola.features.cars.entity.Car;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -30,6 +32,14 @@ public class Shop {
 
     @Column(name = "email")
     private String email;
+
+    public Shop(int id, String shopName, String address, String phone, String email) {
+        this.id = id;
+        this.shopName = shopName;
+        this.address = address;
+        this.phone = phone;
+        this.email = email;
+    }
 
     @ManyToMany(
         cascade = CascadeType.ALL,

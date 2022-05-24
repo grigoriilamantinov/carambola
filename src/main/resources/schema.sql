@@ -1,17 +1,15 @@
-drop table cars_shops;
-drop table owners;
-drop table cars;
-drop table shops;
+drop table if exists cars_shops;
+drop table if exists owners;
+drop table if exists cars;
+drop table if exists shops;
 
-create table cars
+create table if not exists cars
 (
     id              serial,
     brand           varchar not null,
     year_of_produce integer not null,
     net_worth       integer not null
 );
-alter table cars
-    owner to postgres;
 
 create unique index cars_id_uindex
     on cars (id);
@@ -27,41 +25,38 @@ create table if not exists shops
     email     varchar default 0                                      not null
 );
 
-alter table shops
-    owner to postgres;
-
 create unique index if not exists shops_shop_id_uindex
     on shops (id);
 
 create unique index if not exists shops_shop_uindex
     on shops (shop_name);
 
-create table owners
+create table if not exists owners
 (
-    id         serial,
+    id         INTEGER,
     first_name varchar not null,
     last_name  varchar not null,
     car_id     integer
-        constraint owners_cars_id_fk
-            references cars (id)
+
+
+
+--         constraint owners_cars_id_fk
+-- --             references cars (id)
+--         constraint OWNERS_CARS_ID_FK
+--         references CARS (ID)
 );
 
-alter table owners
-    owner to postgres;
 
-
-create table cars_shops
+create table if not exists cars_shops
 (
-    car_id  integer not null
-        constraint car_shops_cars_id_fk
-            references cars (id),
+    car_id  integer not null,
+--         constraint car_shops_cars_id_fk
+--             references cars (id),
     shop_id integer not null
-        constraint car_shops_shops_shop_id_fk
-            references shops
-);
+--         constraint car_shops_shops_shop_id_fk
+--             references shops
 
-alter table cars_shops
-    owner to postgres;
+);
 
 create unique index car_shops_car_id_shop_id_uindex
     on cars_shops (car_id, shop_id);
