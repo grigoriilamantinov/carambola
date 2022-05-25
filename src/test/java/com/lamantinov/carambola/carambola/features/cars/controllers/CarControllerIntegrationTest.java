@@ -38,9 +38,9 @@ class CarControllerIntegrationTest {
 
     @Test
     void shouldShowAllCars() throws Exception {
-        String URL = "http://localhost:8080/api/cars/";
-        ObjectMapper mapper = new ObjectMapper();
-        String json = mockMvc.perform(
+        final String URL = "http://localhost:8080/api/cars/";
+        final ObjectMapper mapper = new ObjectMapper();
+        final String json = mockMvc.perform(
                 MockMvcRequestBuilders.get(URL)
                     .contentType(MediaType.APPLICATION_JSON)
             )
@@ -48,14 +48,14 @@ class CarControllerIntegrationTest {
             .getResponse()
             .getContentAsString();
 
-        List<CarWithoutShopsDTO> exceptedResult = carService.getAllWithoutShopsInfo();
-        List<CarWithoutShopsDTO> actualResult = mapper.readValue(json, new TypeReference<>(){});
+        final List<CarWithoutShopsDTO> exceptedResult = carService.getAllWithoutShopsInfo();
+        final List<CarWithoutShopsDTO> actualResult = mapper.readValue(json, new TypeReference<>(){});
         Assertions.assertArrayEquals(new List[]{exceptedResult}, new List[]{actualResult});
     }
 
     @Test
     void shouldGetCar() throws Exception {
-        String URL = "http://localhost:8080/api/cars/2";
+        final String URL = "http://localhost:8080/api/cars/2";
 
         mockMvc.perform(
                 MockMvcRequestBuilders.get(URL)
@@ -70,9 +70,9 @@ class CarControllerIntegrationTest {
 
     @Test
     void shouldGetCarIntoAllShops() throws Exception {
-        String URL = "http://localhost:8080/api/cars/7/shops";
-        ObjectMapper mapper = new ObjectMapper();
-        String json = mockMvc.perform(
+        final String URL = "http://localhost:8080/api/cars/7/shops";
+        final ObjectMapper mapper = new ObjectMapper();
+        final String json = mockMvc.perform(
                 MockMvcRequestBuilders.get(URL)
                     .contentType(MediaType.APPLICATION_JSON)
             )
@@ -80,7 +80,7 @@ class CarControllerIntegrationTest {
             .getResponse()
             .getContentAsString();
 
-        List<ShopWithoutCarsDTO> shopList = new ArrayList<>(){{
+        final List<ShopWithoutCarsDTO> shopList = new ArrayList<>(){{
             add(new ShopWithoutCarsDTO(
                 1,
                 "Kira Auto",
@@ -90,27 +90,27 @@ class CarControllerIntegrationTest {
             );
         }};
 
-        CarIntoShopsDTO exceptedResult = new CarIntoShopsDTO();
+        final  CarIntoShopsDTO exceptedResult = new CarIntoShopsDTO();
         exceptedResult.setId(7);
         exceptedResult.setBrand("Ferrari");
         exceptedResult.setShopWithoutCarsDTO(shopList);
 
-        CarIntoShopsDTO actualResult = mapper.readValue(json, CarIntoShopsDTO.class);
+        final CarIntoShopsDTO actualResult = mapper.readValue(json, CarIntoShopsDTO.class);
         Assertions.assertEquals(exceptedResult, actualResult);
     }
 
     @Test
     void shouldAddNewCar() throws Exception {
-        String URL = "http://localhost:8080/api/cars/3";
-        ObjectMapper mapper = new ObjectMapper();
-        String json = mockMvc.perform(
+        final String URL = "http://localhost:8080/api/cars/3";
+        final ObjectMapper mapper = new ObjectMapper();
+        final String json = mockMvc.perform(
                 MockMvcRequestBuilders.get(URL)
                     .contentType(MediaType.APPLICATION_JSON)
             )
             .andReturn()
             .getResponse()
             .getContentAsString();
-        CarWithoutShopsDTO carWithoutShopsDTO = mapper.readValue(json, CarWithoutShopsDTO.class);
+        final CarWithoutShopsDTO carWithoutShopsDTO = mapper.readValue(json, CarWithoutShopsDTO.class);
         final var exceptedResult = 3;
         final var actualResult = carWithoutShopsDTO.getId();
         Assertions.assertEquals(exceptedResult, actualResult);
@@ -118,16 +118,16 @@ class CarControllerIntegrationTest {
 
     @Test
     void shouldUpdateCar() throws Exception {
-        String URL = "http://localhost:8080/api/cars/3";
-        ObjectMapper mapper = new ObjectMapper();
-        String json = mockMvc.perform(
+        final String URL = "http://localhost:8080/api/cars/3";
+        final ObjectMapper mapper = new ObjectMapper();
+        final String json = mockMvc.perform(
                 MockMvcRequestBuilders.get(URL)
                     .contentType(MediaType.APPLICATION_JSON)
             )
             .andReturn()
             .getResponse()
             .getContentAsString();
-        CarWithoutShopsDTO carWithoutShopsDTO = mapper.readValue(json, CarWithoutShopsDTO.class);
+        final CarWithoutShopsDTO carWithoutShopsDTO = mapper.readValue(json, CarWithoutShopsDTO.class);
         final var exceptedResult = "Car " + 3 + " was updated";
         final var actualResult = "Car " + carWithoutShopsDTO.getId() + " was updated";
         Assertions.assertEquals(exceptedResult, actualResult);
@@ -135,9 +135,9 @@ class CarControllerIntegrationTest {
 
     @Test
     void shouldDeleteCar() throws Exception {
-        String URL = "http://localhost:8080/api/cars/3";
-        ObjectMapper mapper = new ObjectMapper();
-        String json = mockMvc.perform(
+        final String URL = "http://localhost:8080/api/cars/3";
+        final ObjectMapper mapper = new ObjectMapper();
+        final String json = mockMvc.perform(
                 MockMvcRequestBuilders.get(URL)
                     .contentType(MediaType.APPLICATION_JSON)
             )
@@ -145,7 +145,7 @@ class CarControllerIntegrationTest {
             .getResponse()
             .getContentAsString();
 
-        CarWithoutShopsDTO carWithoutShopsDTO = mapper.readValue(json, CarWithoutShopsDTO.class);
+        final CarWithoutShopsDTO carWithoutShopsDTO = mapper.readValue(json, CarWithoutShopsDTO.class);
         final var exceptedResult = "Car with ID = " + 3 + " was deleted";
         final var actualResult = "Car with ID = " + carWithoutShopsDTO.getId() + " was deleted";
         Assertions.assertEquals(exceptedResult, actualResult);
