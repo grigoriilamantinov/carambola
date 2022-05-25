@@ -54,14 +54,14 @@ class CarServiceImplTestWithH2Base {
         }};
 
         List<Car> carList = new ArrayList<>(){{
-            add(new Car(1, "Maddyson", 1984, 2000000, shopList.get()));
-            add(new Car(2, "Lada", 2006, 900000, shopList));
-            add(new Car(3, "GAZ", 2010, 1000000, shopList));
-            add(new Car(4, "Lada", 1999, 700000, shopList));
-            add(new Car(5, "Lada", 2007, 3000000, shopList));
-            add(new Car(6, "BMW", 2018, 7000000, shopList));
-            add(new Car(7, "Ferrari", 2020, 12000000, shopList));
-            add(new Car(8, "Yo-mobil", 2010, 9990000, shopList));
+            add(new Car(1, "Maddyson", 1984, 2000000));
+            add(new Car(2, "Lada", 2006, 900000));
+            add(new Car(3, "GAZ", 2010, 1000000));
+            add(new Car(4, "Lada", 1999, 700000));
+            add(new Car(5, "Lada", 2007, 3000000));
+            add(new Car(6, "BMW", 2018, 7000000));
+            add(new Car(7, "Ferrari", 2020, 12000000));
+            add(new Car(8, "Yo-mobil", 2010, 9990000));
         }};
 
         var actualResult = carService.getAll();
@@ -69,11 +69,25 @@ class CarServiceImplTestWithH2Base {
     }
 
     @Test
-    void getAllWithoutShopsInfo() {
+    void shouldGetAllWithoutShopsInfo() {
+
+        List<CarWithoutShopsDTO> exceptedResult = new ArrayList<>(){{
+            add(new CarWithoutShopsDTO(1, "Maddyson", 1984, 2000000));
+            add(new CarWithoutShopsDTO(2, "Lada", 2006, 900000));
+            add(new CarWithoutShopsDTO(3, "GAZ", 2010, 1000000));
+            add(new CarWithoutShopsDTO(4, "Lada", 1999, 700000));
+            add(new CarWithoutShopsDTO(5, "Lada", 2007, 3000000));
+            add(new CarWithoutShopsDTO(6, "BMW", 2018, 7000000));
+            add(new CarWithoutShopsDTO(7, "Ferrari", 2020, 12000000));
+            add(new CarWithoutShopsDTO(8, "Yo-mobil", 2010, 9990000));
+        }};
+
+        var actualResult = carService.getAllWithoutShopsInfo();
+        Assertions.assertEquals(exceptedResult, actualResult);
     }
 
     @Test
-    void getCarIntoShops() {
+    void shouldGetCarIntoShops() {
         List<ShopWithoutCarsDTO> shopWithoutCarsDTO = new ArrayList<>(){{
             add(new ShopWithoutCarsDTO(
                 1,
@@ -92,37 +106,9 @@ class CarServiceImplTestWithH2Base {
     }
 
     @Test
-    void save() {
-    }
-
-    @Test
-    void getById() {
-
-    }
-
-    @Test
-    void getCarsWithoutShopsById() {
+    void shouldGetCarsWithoutShopsById() {
         var exceptedResult = new CarWithoutShopsDTO(3, "GAZ", 2010, 1000000);
         var actualResult = carService.getCarsWithoutShopsById(3);
         Assertions.assertEquals(exceptedResult, actualResult);
-    }
-
-    @Test
-    void delete() {
-        List<Car> exceptedResult = new ArrayList<>(){{
-            add(new Car(2, "Lada", 2006, 900000));
-            add(new Car(3, "GAZ", 2010, 1000000));
-            add(new Car(4, "Lada", 1999, 700000));
-            add(new Car(5, "Lada", 2007, 3000000));
-            add(new Car(6, "BMW", 2018, 7000000));
-            add(new Car(7, "Ferrari", 2020, 12000000));
-            add(new Car(8, "Yo-mobil", 2010, 9990000));
-        }};
-        carService.delete(1);
-        var actualResult = carService.getAll();
-
-        Assertions.assertEquals(exceptedResult.size(), actualResult.size());
-//        Assertions.assertTrue(actualResult.containsAll(exceptedResult));
-//        Assertions.assertIterableEquals(exceptedResult, actualResult);
     }
 }

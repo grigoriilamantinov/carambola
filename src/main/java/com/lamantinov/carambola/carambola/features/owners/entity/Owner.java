@@ -32,6 +32,12 @@ public class Owner {
     @JoinColumn(name = "car_id", referencedColumnName = "id")
     private Car car;
 
+    public Owner(int id, @NonNull String firstName, @NonNull String lastName) {
+        this.id = id;
+        this.firstName = firstName;
+        this.lastName = lastName;
+    }
+
     @Override
     public String toString() {
         return "Owner{" +

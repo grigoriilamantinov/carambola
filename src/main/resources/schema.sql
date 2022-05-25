@@ -33,7 +33,7 @@ create unique index if not exists shops_shop_uindex
 
 create table if not exists owners
 (
-    id         INTEGER,
+    id         INTEGER auto_increment,
     first_name varchar not null,
     last_name  varchar not null,
     car_id     integer
