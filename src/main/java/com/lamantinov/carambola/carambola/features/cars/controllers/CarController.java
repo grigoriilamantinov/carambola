@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/cars")
+@RequestMapping("/api/cars/")
 public class CarController {
 
     private final CarService carService;
@@ -45,7 +45,7 @@ public class CarController {
     @PutMapping("")
     public String updateCar(@RequestBody final Car car) {
         carService.save(car);
-        return "Car" + car.getId() + "was updated";
+        return "Car " + car.getId() + " was updated";
     }
 
     @DeleteMapping("/{id}")
