@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/")
+@RequestMapping("/cars")
 public class CarController {
 
     private final CarService carService;
@@ -21,34 +21,34 @@ public class CarController {
         this.carService = carService;
     }
 
-    @GetMapping("/cars")
+    @GetMapping("")
     public List<CarWithoutShopsDTO> showAllCars() {
         return carService.getAllWithoutShopsInfo();
     }
 
-    @GetMapping("/cars/{id}")
+    @GetMapping("/{id}")
     public CarWithoutShopsDTO getCar(@PathVariable final int id) {
         return carService.getCarsWithoutShopsById(id);
     }
 
-    @GetMapping("/cars/{id}/shops")
+    @GetMapping("/{id}/shops")
     public CarIntoShopsDTO getCarIntoAllShops(@PathVariable final int id) {
         return carService.getCarIntoShops(id);
     }
 
-    @PostMapping("/cars")
-    public Car addNewCar(@RequestBody final Car car) {
+    @PostMapping("")
+    public int addNewCar(@RequestBody final Car car) {
         carService.save(car);
-        return car;
+        return car.getId();
     }
 
-    @PutMapping("/cars")
-    public Car updateCar(@RequestBody final Car car) {
+    @PutMapping("")
+    public String updateCar(@RequestBody final Car car) {
         carService.save(car);
-        return car;
+        return "Car" + car.getId() + "was updated";
     }
 
-    @DeleteMapping("/cars/{id}")
+    @DeleteMapping("/{id}")
     public String deleteCar(@PathVariable final int id) {
         carService.delete(id);
         return "Car with ID = " + id + " was deleted";
