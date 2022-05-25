@@ -2,7 +2,6 @@ package com.lamantinov.carambola.carambola.features.owners.services;
 
 import com.lamantinov.carambola.carambola.CarambolaApplication;
 import com.lamantinov.carambola.carambola.features.cars.dto.CarWithoutShopsDTO;
-import com.lamantinov.carambola.carambola.features.cars.entity.Car;
 import com.lamantinov.carambola.carambola.features.owners.dto.OwnerWithoutCarsDTO;
 import com.lamantinov.carambola.carambola.features.owners.dto.OwnersCarDTO;
 import com.lamantinov.carambola.carambola.features.owners.entity.Owner;
