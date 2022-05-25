@@ -11,6 +11,7 @@ import javax.persistence.*;
 @NoArgsConstructor
 @Getter
 @Setter
+
 public class Owner {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -31,6 +32,12 @@ public class Owner {
     )
     @JoinColumn(name = "car_id", referencedColumnName = "id")
     private Car car;
+
+    public Owner(int id, @NonNull String firstName, @NonNull String lastName) {
+        this.id = id;
+        this.firstName = firstName;
+        this.lastName = lastName;
+    }
 
     @Override
     public String toString() {

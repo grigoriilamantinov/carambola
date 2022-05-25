@@ -1,9 +1,9 @@
-drop table cars_shops;
-drop table owners;
-drop table cars;
-drop table shops;
+drop table if exists cars_shops;
+drop table if exists owners;
+drop table if exists cars;
+drop table if exists shops;
 
-create table cars
+create table if not exists   cars
 (
     id              serial,
     brand           varchar not null,
@@ -36,7 +36,7 @@ create unique index if not exists shops_shop_id_uindex
 create unique index if not exists shops_shop_uindex
     on shops (shop_name);
 
-create table owners
+create table if not exists  owners
 (
     id         serial,
     first_name varchar not null,
@@ -50,7 +50,7 @@ alter table owners
     owner to postgres;
 
 
-create table cars_shops
+create table if not exists  cars_shops
 (
     car_id  integer not null
         constraint car_shops_cars_id_fk

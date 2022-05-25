@@ -5,6 +5,7 @@ import lombok.*;
 
 @EqualsAndHashCode
 @NoArgsConstructor
+@AllArgsConstructor
 @Getter
 @Setter
 public class CarWithoutShopsDTO {
