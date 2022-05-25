@@ -34,7 +34,7 @@ class OwnerControllerIntegrationsTest {
     private OwnerService ownerService;
 
     @Test
-    void showAllOwners() throws Exception {
+    void shouldShowAllOwners() throws Exception {
         String URL = "http://localhost:8080/api/owners/";
         ObjectMapper mapper = new ObjectMapper();
         String json = mockMvc.perform(
@@ -51,7 +51,7 @@ class OwnerControllerIntegrationsTest {
     }
 
     @Test
-    void getOwner() throws Exception {
+    void shouldGetOwner() throws Exception {
         String URL = "http://localhost:8080/api/owners/2";
 
         mockMvc.perform(
@@ -65,7 +65,7 @@ class OwnerControllerIntegrationsTest {
     }
 
     @Test
-    void addNewOwner() throws Exception {
+    void shouldAddNewOwner() throws Exception {
         String URL = "http://localhost:8080/api/owners/3";
         ObjectMapper mapper = new ObjectMapper();
         String json = mockMvc.perform(
@@ -82,7 +82,7 @@ class OwnerControllerIntegrationsTest {
     }
 
     @Test
-    void updateOwner() throws Exception {
+    void shouldUpdateOwner() throws Exception {
         String URL = "http://localhost:8080/api/owners/3";
         ObjectMapper mapper = new ObjectMapper();
         String json = mockMvc.perform(
@@ -99,8 +99,8 @@ class OwnerControllerIntegrationsTest {
     }
 
     @Test
-    void deleteOwner() throws Exception {
-        String URL = "http://localhost:8080/api/cars/3";
+    void shouldDeleteOwner() throws Exception {
+        String URL = "http://localhost:8080/api/owners/3";
         ObjectMapper mapper = new ObjectMapper();
         String json = mockMvc.perform(
                 MockMvcRequestBuilders.get(URL)
@@ -109,14 +109,14 @@ class OwnerControllerIntegrationsTest {
             .andReturn()
             .getResponse()
             .getContentAsString();
-
+        OwnerWithoutCarsDTO ownerWithoutCarsDTO = mapper.readValue(json, OwnerWithoutCarsDTO.class);
         final var exceptedResult = "Owner " + 3 + " was deleted";
-        final var actualResult = "Owner " + 3 + " was deleted";
+        final var actualResult = "Owner " + ownerWithoutCarsDTO.getId() + " was deleted";
         Assertions.assertEquals(exceptedResult, actualResult);
     }
 
     @Test
-    void getOwnersCar() throws Exception {
+    void shouldGetOwnersCar() throws Exception {
         String URL = "http://localhost:8080/api/owners/2/car";
 
         mockMvc.perform(

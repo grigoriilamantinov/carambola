@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/")
+@RequestMapping("/api/shops/")
 public class ShopController {
 
     private final ShopService shopService;
@@ -20,34 +20,34 @@ public class ShopController {
         this.shopService = shopService;
     }
 
-    @GetMapping("/shops")
+    @GetMapping()
     public List<ShopWithoutCarsDTO> showAllShops() {
         return shopService.getAllWithoutCarsInfo();
     }
 
-    @GetMapping("/shops/{id}")
+    @GetMapping("/{id}")
     public ShopWithoutCarsDTO getShop(@PathVariable final int id) {
         return shopService.getShopWithoutCarsById(id);
     }
 
-    @GetMapping("/shops/{id}/cars")
+    @GetMapping("/{id}/cars")
     public ShopWithCarsDTO getShopWithCars(@PathVariable final int id) {
         return shopService.getCarsIntoShop(id);
     }
 
-    @PostMapping("/shops")
-    public Shop addNewShop(@RequestBody final Shop shop) {
+    @PostMapping()
+    public int addNewShop(@RequestBody final Shop shop) {
         shopService.save(shop);
-        return shop;
+        return shop.getId();
     }
 
-    @PutMapping("/shops")
-    public Shop updateShop(@RequestBody final Shop shop) {
+    @PutMapping()
+    public String updateShop(@RequestBody final Shop shop) {
         shopService.save(shop);
-        return shop;
+        return "Shop " + shop.getId() + " was updated";
     }
 
-    @DeleteMapping("/shops/{id}")
+    @DeleteMapping("/{id}")
     public String deleteShop(@PathVariable final int id) {
         shopService.delete(id);
         return "Shop with ID = " + id + " was deleted";

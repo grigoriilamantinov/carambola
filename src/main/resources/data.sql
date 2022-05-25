@@ -9,7 +9,7 @@ INSERT INTO cars (brand, year_of_produce, net_worth) VALUES ('Yo-mobil', 2010,99
 
 INSERT INTO shops (id, shop_name, address, phone, email) VALUES (DEFAULT, 'Kira Auto', 'Moskovsky prospect building 1','8-812-523-21-23','kirochka@kiraauto.com');
 INSERT INTO shops (id, shop_name, address, phone, email) VALUES (DEFAULT, 'BNW', 'Moskovsky prospect building 12','8-812-345-23-12','bnw@bnw.com');
-INSERT INTO shops (id, shop_name, address, phone, email) VALUES (DEFAULT, 'Е-мобилс', 'Enthusiasts Avenue 12','8-812-526-31-21','e-mobils@cash.com');
+INSERT INTO shops (id, shop_name, address, phone, email) VALUES (DEFAULT, 'E-mobils', 'Enthusiasts Avenue 12','8-812-526-31-21','e-mobils@cash.com');
 
 INSERT INTO owners (first_name, last_name, car_id) VALUES ('Michail', 'Shishkin', 1);
 INSERT INTO owners (first_name, last_name, car_id) VALUES ('Mihael', 'Shumaher', 2);
