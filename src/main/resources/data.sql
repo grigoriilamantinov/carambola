@@ -11,12 +11,12 @@ INSERT INTO shops (id, shop_name, address, phone, email) VALUES (DEFAULT, 'Kira 
 INSERT INTO shops (id, shop_name, address, phone, email) VALUES (DEFAULT, 'BNW', 'Moskovsky prospect building 12','8-812-345-23-12','bnw@bnw.com');
 INSERT INTO shops (id, shop_name, address, phone, email) VALUES (DEFAULT, 'Е-мобилс', 'Enthusiasts Avenue 12','8-812-526-31-21','e-mobils@cash.com');
 
-INSERT INTO owners (first_name, last_name, car_id) VALUES ('Михаил', 'Шишкин', 1);
-INSERT INTO owners (first_name, last_name, car_id) VALUES ('Михаэль', 'Шумахер', 2);
-INSERT INTO owners (first_name, last_name, car_id) VALUES ('Капибар', 'Григорьевич', 4);
-INSERT INTO owners (first_name, last_name, car_id) VALUES ('Али', 'Дон-Донович', 6);
-INSERT INTO owners (first_name, last_name, car_id) VALUES ('Имануил','Кант', 8);
-INSERT INTO owners (first_name, last_name, car_id) VALUES ('Иван','Иванов', 7);
+INSERT INTO owners (first_name, last_name, car_id) VALUES ('Michail', 'Shishkin', 1);
+INSERT INTO owners (first_name, last_name, car_id) VALUES ('Mihael', 'Shumaher', 2);
+INSERT INTO owners (first_name, last_name, car_id) VALUES ('Capybar', 'Grigorievich', 4);
+INSERT INTO owners (first_name, last_name, car_id) VALUES ('Ali', 'Don-Donovich', 6);
+INSERT INTO owners (first_name, last_name, car_id) VALUES ('Emanuil','Kunt', 8);
+INSERT INTO owners (first_name, last_name, car_id) VALUES ('Ivan','Ivaniv', 7);
 
 INSERT INTO cars_shops (car_id, shop_id) VALUES (1,1);
 INSERT INTO cars_shops (car_id, shop_id) VALUES (1,2);
