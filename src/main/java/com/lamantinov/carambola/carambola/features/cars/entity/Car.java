@@ -1,7 +1,10 @@
 package com.lamantinov.carambola.carambola.features.cars.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.lamantinov.carambola.carambola.features.shops.entity.Shop;
 import lombok.AllArgsConstructor;
+
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

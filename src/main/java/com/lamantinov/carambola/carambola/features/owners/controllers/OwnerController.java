@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/")
+@RequestMapping("/api/owners")
 public class OwnerController {
 
     private final OwnerService ownerService;
@@ -21,35 +21,35 @@ public class OwnerController {
         this.ownerService = ownerService;
     }
 
-    @GetMapping("/owners")
+    @GetMapping()
     public List<OwnerWithoutCarsDTO> showAllOwners() {
         return ownerService.getAllWithoutCarsInfo();
     }
 
-    @GetMapping("/owners/{id}")
+    @GetMapping("/{id}")
     public OwnerWithoutCarsDTO getOwner(@PathVariable final int id) {
         return ownerService.getByIdWithoutCar(id);
     }
 
-    @PostMapping("/owners")
+    @PostMapping()
     public Owner addNewOwner(@RequestBody final Owner owner) {
         ownerService.save(owner);
         return owner;
     }
 
-    @PutMapping("/owners")
+    @PutMapping()
     public Owner updateOwner(@RequestBody final Owner owner) {
         ownerService.save(owner);
         return owner;
     }
 
-    @DeleteMapping("/owners/{id}")
+    @DeleteMapping("/{id}")
     public String deleteOwner(@PathVariable final int id) {
         ownerService.delete(id);
         return "Owner with ID = " + id + " was deleted";
     }
 
-    @GetMapping("/owners/{id}/car")
+    @GetMapping("/{id}/car")
     public OwnersCarDTO getOwnersCar(@PathVariable final int id) {
         return ownerService.getOwnersCarById(id);
     }
