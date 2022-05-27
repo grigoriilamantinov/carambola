@@ -21,7 +21,7 @@ public class CarController {
         this.carService = carService;
     }
 
-    @GetMapping("")
+    @GetMapping()
     public List<CarWithoutShopsDTO> showAllCars() {
         return carService.getAllWithoutShopsInfo();
     }
@@ -35,15 +35,15 @@ public class CarController {
     public CarIntoShopsDTO getCarIntoAllShops(@PathVariable final int id) {
         return carService.getCarIntoShops(id);
     }
-
-    @PostMapping("")
-    public int addNewCar(@RequestBody final Car car) {
+  
+    @PostMapping()
+    public Car addNewCar(@RequestBody final Car car) {
         carService.save(car);
         return car.getId();
     }
-
-    @PutMapping("")
-    public String updateCar(@RequestBody final Car car) {
+  
+    @PutMapping()
+    public Car updateCar(@RequestBody final Car car) {
         carService.save(car);
         return "Car " + car.getId() + " was updated";
     }

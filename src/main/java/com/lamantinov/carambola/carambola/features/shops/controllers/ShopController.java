@@ -36,7 +36,7 @@ public class ShopController {
     }
 
     @PostMapping()
-    public int addNewShop(@RequestBody final Shop shop) {
+    public int addNewShop(@RequestBody final Shop shop) 
         shopService.save(shop);
         return shop.getId();
     }
