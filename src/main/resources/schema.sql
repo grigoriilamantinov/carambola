@@ -38,8 +38,9 @@ create table if not exists owners
     last_name  varchar not null,
     car_id     integer
 
+
 create table if not exists cars_shops
-create table if not exists  cars_shops
+
 (
     car_id  integer not null,
 --         constraint car_shops_cars_id_fk

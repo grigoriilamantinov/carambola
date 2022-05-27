@@ -1,6 +1,7 @@
 package com.lamantinov.carambola.carambola.features.owners.services;
 
 import com.lamantinov.carambola.carambola.CarambolaApplication;
+import com.lamantinov.carambola.carambola.features.cars.dto.CarWithoutShopsDTO;
 import com.lamantinov.carambola.carambola.features.cars.entity.Car;
 import com.lamantinov.carambola.carambola.features.owners.dao.OwnerRepository;
 import com.lamantinov.carambola.carambola.features.owners.dto.OwnerWithoutCarsDTO;
@@ -33,18 +34,18 @@ class OwnerServiceImplTest {
 
     @Test
     void shouldGetAllWithoutCarsInfo() {
-        List<Owner> ownerList = new ArrayList<>(){{
+        final List<Owner> ownerList = new ArrayList<>(){{
             add(new Owner(1,"Григорий", "Капибаренко"));
             add(new Owner(2,"Виктор","Хомяков"));
         }};
 
-        List<OwnerWithoutCarsDTO> exceptedResult = new ArrayList<>(){{
+        final List<OwnerWithoutCarsDTO> exceptedResult = new ArrayList<>(){{
             add(new OwnerWithoutCarsDTO(1,"Григорий", "Капибаренко"));
             add(new OwnerWithoutCarsDTO(2,"Виктор","Хомяков"));
         }};
 
         Mockito.when(ownerRepository.findAll()).thenReturn(ownerList);
-        var actualResult = testable.getAllWithoutCarsInfo();
+        final var actualResult = testable.getAllWithoutCarsInfo();
 
         Assertions.assertEquals(actualResult, exceptedResult);
         Mockito.verify(ownerRepository).findAll();
@@ -60,6 +61,8 @@ class OwnerServiceImplTest {
         car.setYearOfProduce(2006);
         car.setNetWorth(500400);
 
+        final CarWithoutShopsDTO carWithoutShopsDTO = CarWithoutShopsDTO.of(car);
+
         final Owner owner = new Owner();
         owner.setId(1);
         owner.setFirstName("Григорий");
@@ -67,7 +70,9 @@ class OwnerServiceImplTest {
         owner.setCar(car);
 
         final var exceptedResult = new OwnersCarDTO();
-        exceptedResult.setCar(car);
+        exceptedResult.setFirstName("Григорий");
+        exceptedResult.setLastName("Капибаренко");
+        exceptedResult.setCarWithoutShopsDTO(carWithoutShopsDTO);
 
         Mockito.when(ownerRepository.getById(ownerId)).thenReturn(owner);
 
@@ -75,9 +80,6 @@ class OwnerServiceImplTest {
 
         Assertions.assertEquals(actualResult, exceptedResult);
         Mockito.verify(ownerRepository).getById(ownerId);
-
-
-
     }
 
     @Test

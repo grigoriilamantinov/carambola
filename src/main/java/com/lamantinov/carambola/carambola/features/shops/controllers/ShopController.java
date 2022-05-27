@@ -36,15 +36,15 @@ public class ShopController {
     }
 
     @PostMapping()
-    public Shop addNewShop(@RequestBody final Shop shop) {
+    public int addNewShop(@RequestBody final Shop shop) 
         shopService.save(shop);
-        return shop;
+        return shop.getId();
     }
 
     @PutMapping()
-    public Shop updateShop(@RequestBody final Shop shop) {
+    public String updateShop(@RequestBody final Shop shop) {
         shopService.save(shop);
-        return shop;
+        return "Shop " + shop.getId() + " was updated";
     }
 
     @DeleteMapping("/{id}")

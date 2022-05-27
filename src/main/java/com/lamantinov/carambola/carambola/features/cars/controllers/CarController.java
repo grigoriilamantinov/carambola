@@ -35,17 +35,17 @@ public class CarController {
     public CarIntoShopsDTO getCarIntoAllShops(@PathVariable final int id) {
         return carService.getCarIntoShops(id);
     }
-
+  
     @PostMapping()
     public Car addNewCar(@RequestBody final Car car) {
         carService.save(car);
-        return car;
+        return car.getId();
     }
-
+  
     @PutMapping()
     public Car updateCar(@RequestBody final Car car) {
         carService.save(car);
-        return car;
+        return "Car " + car.getId() + " was updated";
     }
 
     @DeleteMapping("/{id}")

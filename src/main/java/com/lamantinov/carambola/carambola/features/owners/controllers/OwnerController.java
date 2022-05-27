@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/owners")
+@RequestMapping("/api/owners/")
 public class OwnerController {
 
     private final OwnerService ownerService;
@@ -38,9 +38,9 @@ public class OwnerController {
     }
 
     @PutMapping()
-    public Owner updateOwner(@RequestBody final Owner owner) {
+    public String updateOwner(@RequestBody final Owner owner) {
         ownerService.save(owner);
-        return owner;
+        return "Owner " + owner.getId() + " was updated";
     }
 
     @DeleteMapping("/{id}")
