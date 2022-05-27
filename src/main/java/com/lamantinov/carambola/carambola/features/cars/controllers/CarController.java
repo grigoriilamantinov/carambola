@@ -37,13 +37,13 @@ public class CarController {
     }
   
     @PostMapping()
-    public Car addNewCar(@RequestBody final Car car) {
+    public int addNewCar(@RequestBody final Car car) {
         carService.save(car);
         return car.getId();
     }
   
     @PutMapping()
-    public Car updateCar(@RequestBody final Car car) {
+    public String updateCar(@RequestBody final Car car) {
         carService.save(car);
         return "Car " + car.getId() + " was updated";
     }

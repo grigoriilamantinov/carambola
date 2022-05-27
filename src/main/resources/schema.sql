@@ -1,9 +1,9 @@
-drop table if exists cars_shops;
-drop table if exists owners;
-drop table if exists cars;
-drop table if exists shops;
+drop table IF EXISTS cars_shops;
+drop table IF EXISTS  owners;
+drop table IF EXISTS  cars;
+drop table IF EXISTS  shops;
 
-create table if not exists cars
+create table IF NOT EXISTS cars
 (
     id              serial,
     brand           varchar not null,
@@ -31,24 +31,24 @@ create unique index if not exists shops_shop_id_uindex
 create unique index if not exists shops_shop_uindex
     on shops (shop_name);
 
-create table if not exists owners
+create table IF NOT EXISTS  owners
 (
-    id         INTEGER auto_increment,
+    id         serial,
     first_name varchar not null,
     last_name  varchar not null,
     car_id     integer
+        constraint owners_cars_id_fk
+            references cars (id)
+);
 
-
-create table if not exists cars_shops
-
+create table IF NOT EXISTS  cars_shops
 (
-    car_id  integer not null,
---         constraint car_shops_cars_id_fk
---             references cars (id),
+    car_id  integer not null
+        constraint car_shops_cars_id_fk
+            references cars (id),
     shop_id integer not null
---         constraint car_shops_shops_shop_id_fk
---             references shops
-
+        constraint car_shops_shops_shop_id_fk
+            references shops
 );
 
 create unique index car_shops_car_id_shop_id_uindex
