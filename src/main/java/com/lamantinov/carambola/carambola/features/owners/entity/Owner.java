@@ -11,6 +11,7 @@ import javax.persistence.*;
 @NoArgsConstructor
 @Getter
 @Setter
+
 public class Owner {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
