@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Shop at Carambola</title>
+  <meta charset="UTF-8">
+  <title>Shop at Carambola</title>
 </head>
 <body>
 
@@ -10,8 +10,9 @@
 <br>
 <br>
 <div th:each="shop : ${shops}">
-    <a th:href="@{/shops/{id}/cars(id=${shop.getId()})}" th:text="VIEW">view</a>
-    <th th:text="${shop.getShopName}">shopName</th>
+  <a th:href="@{/shops/{id}/cars(id=${shop.getId()})}" th:text="STOCK">info about cars into shop</a>
+  <a th:href="@{/shops/{id}(id=${shop.getId()})}" th:text="INFO">info about shop</a>
+  <th th:text="${shop.getShopName}">shopName</th>
 </div>
 
 </body>

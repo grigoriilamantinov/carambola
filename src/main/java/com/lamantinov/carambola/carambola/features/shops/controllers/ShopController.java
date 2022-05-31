@@ -26,9 +26,16 @@ public class ShopController {
     }
 
     @GetMapping("/{id}/cars")
-    public String showCars(@PathVariable("id") int id, Model model) {
-        model.addAttribute("shop", shopService.getCarsIntoShop(id));
-        return "shops/id/cars";
+    public String showCars(@PathVariable("id") int id, Model modelCars, Model modelShop) {
+        modelShop.addAttribute("modelShops", shopService.getById(id));
+        modelCars.addAttribute("modelCars", shopService.getById(id).getCars());
+        return "shopsCars";
+    }
+
+    @GetMapping("/{id}")
+    public String showShops(@PathVariable("id") int id, Model model) {
+        model.addAttribute("shop", shopService.getById(id));
+        return "id";
     }
 
 }
