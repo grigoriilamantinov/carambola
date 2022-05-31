@@ -2,13 +2,16 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Shop at Carambola</title>
 </head>
 <body>
 
+<h1> Welcome to our awesome CARambola! Service for cheking shops, cars and owners.</h1>
+<br>
+<br>
 <div th:each="shop : ${shops}">
+    <a th:href="@{/shops/{id}/cars(id=${shop.getId()})}" th:text="VIEW">view</a>
     <th th:text="${shop.getShopName}">shopName</th>
-
 </div>
 
 </body>
