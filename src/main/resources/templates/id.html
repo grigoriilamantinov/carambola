@@ -5,9 +5,34 @@
   <title>Shop</title>
 </head>
 <body>
-<th th:text="${shop.getShopName}">shopName</th>
-<th th:text="${shop.getAddress}">shopName</th>
-<th th:text="${shop.getPhone}">shopName</th>
-<th th:text="${shop.getEmail}">shopName</th>
+<table>
+  <thead>
+  <tr>
+    <th></th>
+    <th></th>
+  </tr>
+  </thead>
+  <tbody>
+  </tr>
+  <td> Shop name: </td>
+  <td th:text="${shop.getShopName}"></td>
+  </tr>
+  </tr>
+  <td> Address: </td>
+  <td th:text="${shop.getAddress}"> </td>
+  </tr>
+
+  </tr>
+  <td> Phone: </td>
+  <td th:text="${shop.getPhone}"></td>
+  </tr>
+
+  </tr>
+  <td> Email: </td>
+  <td th:text="${shop.getEmail}"></td>
+  </tr>
+  </tbody>
+</table>
+
 </body>
 </html>

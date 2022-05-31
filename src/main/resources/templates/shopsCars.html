@@ -8,14 +8,25 @@
 <h2>Сar showroom:</h2>
 Shop name: <th th:text="${modelShops.getShopName}">shopName</th>.
 Phone: <th th:text="${modelShops.getPhone}">shopName</th>
-<a th:href="@{/shops/{id}(id=${modelShops.getId()})}" th:text="More info"></a>
+<a th:href="@{/shops/{id}(id=${modelShops.getId()})}" th:text="Info"></a>
 <br><br>
 <h2>Available cars:</h2>
 
-<div th:each="cars : ${modelCars}">
-    <th th:text="${cars.getBrand}"></th>
-    <th th:text="${cars.getYearOfProduce}"></th>
-    <th th:text="${cars.getNetWorth}"></th>
-</div>
+<table>
+    <thead>
+    <tr>
+        <th> Brand </th>
+        <th> Year </th>
+        <th> Cost </th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="cars : ${modelCars}">
+        <td><span th:text="${cars.getBrand}"> Brand </span></td>
+        <td><span th:text="${cars.getYearOfProduce}"> Year </span></td>
+        <td><span th:text="${cars.getNetWorth}"> Cost </span></td>
+    </tr>
+    </tbody>
+</table>
 </body>
 </html>
