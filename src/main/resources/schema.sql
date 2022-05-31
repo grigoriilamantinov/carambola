@@ -1,9 +1,9 @@
-drop table IF EXISTS cars_shops;
-drop table IF EXISTS  owners;
-drop table IF EXISTS  cars;
-drop table IF EXISTS  shops;
+drop table if exists cars_shops;
+drop table if exists owners;
+drop table if exists cars;
+drop table if exists shops;
 
-create table IF NOT EXISTS cars
+create table if not exists cars
 (
     id              serial,
     brand           varchar not null,
@@ -17,8 +17,8 @@ create unique index cars_id_uindex
 create table if not exists shops
 (
     id        serial
-        constraint shops_pk
-            primary key,
+    constraint shops_pk
+    primary key,
     shop_name varchar                                                not null,
     address   varchar default 0                                      not null,
     phone     varchar default 0                                      not null,
@@ -31,7 +31,7 @@ create unique index if not exists shops_shop_id_uindex
 create unique index if not exists shops_shop_uindex
     on shops (shop_name);
 
-create table IF NOT EXISTS  owners
+create table if not exists owners
 (
     id         serial,
     first_name varchar not null,
@@ -41,7 +41,7 @@ create table IF NOT EXISTS  owners
             references cars (id)
 );
 
-create table IF NOT EXISTS  cars_shops
+create table if not exists cars_shops
 (
     car_id  integer not null
         constraint car_shops_cars_id_fk

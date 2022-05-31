@@ -1,5 +1,7 @@
 package com.lamantinov.carambola.carambola.features.shops.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.lamantinov.carambola.carambola.features.cars.entity.Car;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -8,6 +10,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.List;
+import java.util.Objects;
 
 @Entity
 @NoArgsConstructor
