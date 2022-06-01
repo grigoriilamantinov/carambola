@@ -2,6 +2,8 @@ package com.lamantinov.carambola.carambola.features.cars.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.lamantinov.carambola.carambola.features.owners.entity.Owner;
 import com.lamantinov.carambola.carambola.features.shops.entity.Shop;
 import lombok.AllArgsConstructor;
 
@@ -20,6 +22,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import java.util.List;
 
@@ -51,6 +54,18 @@ public class Car {
         joinColumns = @JoinColumn(name = "car_id"),
         inverseJoinColumns = @JoinColumn(name = "shop_id"))
     private List<Shop> shops;
+
+    @OneToOne(
+        fetch = FetchType.LAZY,
+        cascade = {
+            CascadeType.DETACH,
+            CascadeType.PERSIST,
+            CascadeType.MERGE,
+            CascadeType.REFRESH
+        }
+    )
+    @JoinColumn(name = "id", referencedColumnName = "car_id")
+    private Owner owner;
 
     public Car(int id, String brand, int yearOfProduce, int netWorth) {
         this.id = id;

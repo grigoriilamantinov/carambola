@@ -15,9 +15,12 @@
 
 <h1> All available car </h1>
 <br>
+<button>
+    <a th:href="@{/cars/addNewCar}" th:text="ADD">add new cars</a>
+</button>
+<br>
 <br>
 <div th:each="car : ${cars}">
-<!--  <a th:href="@{/cars/{id}/shop(id=${car.getId()})}" th:text="SHOP">info about cars into shop</a>-->
   <a th:href="@{/cars/{id}(id=${car.getId()})}" th:text="INFO">info about cars</a>
   <th th:text="${car.getBrand}"></th>
 </div>

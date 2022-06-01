@@ -13,4 +13,6 @@ public interface ShopService extends CarambolaCRUD<Shop> {
     ShopWithCarsDTO getCarsIntoShop(int shopId);
 
     ShopWithoutCarsDTO getShopWithoutCarsById(int shopId);
+
+    void deleteCarFromShop(int carId, int shopId);
 }

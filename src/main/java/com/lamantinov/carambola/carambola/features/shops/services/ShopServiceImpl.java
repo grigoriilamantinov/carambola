@@ -59,4 +59,13 @@ public class ShopServiceImpl implements ShopService {
     public void delete(final int shopId) {
         shopRepository.deleteById(shopId);
     }
+    @Override
+    public void deleteCarFromShop(int carId, int shopId) {
+        var shop = this.getById(shopId);
+        var cars = shop.getCars().stream()
+            .filter(car -> car.getId() != carId)
+            .collect(Collectors.toList());
+        shop.setCars(cars);
+        this.save(shop);
+    }
 }

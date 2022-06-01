@@ -26,9 +26,13 @@ public class Owner {
     @Column(name = "last_name")
     private String lastName;
 
-    @JsonProperty("car")
     @OneToOne(
-        cascade = CascadeType.ALL
+        cascade = {
+            CascadeType.DETACH,
+            CascadeType.PERSIST,
+            CascadeType.MERGE,
+            CascadeType.REFRESH
+        }
     )
     @JoinColumn(name = "car_id", referencedColumnName = "id")
     private Car car;

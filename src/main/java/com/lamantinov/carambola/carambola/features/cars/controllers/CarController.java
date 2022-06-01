@@ -21,11 +21,14 @@ import org.springframework.web.bind.annotation.RequestParam;
 @RequestMapping("/cars")
 public class CarController {
     private final CarService carService;
+    private final ShopService shopService;
 
     public CarController(
-        final CarService carService
+        CarService carService,
+        ShopService shopService
     ) {
         this.carService = carService;
+        this.shopService = shopService;
     }
 
     @GetMapping()
@@ -48,7 +51,11 @@ public class CarController {
     }
 
     @RequestMapping("/{id}/updateCar")
-    public String updateCar(@PathVariable("id") int id, Model modelCar){
+    public String updateCar(
+        @PathVariable("id") int id,
+        Model modelCar
+    ){
+
         Car car = carService.getById(id);
         modelCar.addAttribute("car", car);
         return "car-info";
@@ -68,13 +75,6 @@ public class CarController {
         } else {
             carService.updateCar(car);
         }
-        return "redirect:/cars";
-    }
-
-
-    @RequestMapping ("/{id}/deleteCar")
-    public String deleteCar(@PathVariable("id") int id){
-        carService.delete(id);
         return "redirect:/cars";
     }
 }

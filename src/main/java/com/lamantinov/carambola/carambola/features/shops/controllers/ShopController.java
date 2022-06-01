@@ -8,9 +8,12 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import java.util.stream.Collectors;
 
 @Controller
 @RequestMapping("/shops")
@@ -41,6 +44,21 @@ public class ShopController {
     public String showShops(@PathVariable("id") int id, Model model) {
         model.addAttribute("shop", shopService.getById(id));
         return "id";
+    }
+
+//    @GetMapping("/{id}/cars/add")
+//    public String addCarToShop(Model model) {
+//        model.addAttribute("cars", carService.getAllWithoutShopsInfo());
+//        return "addCarToShop";
+//    }
+
+    @DeleteMapping("/{shop_id}/car/{car_id}")
+    public String deleteCarFromShop(
+        @PathVariable("shop_id") int shopId,
+        @PathVariable("car_id") int carId
+    ){
+        shopService.deleteCarFromShop(carId, shopId);
+        return "redirect:/shops/{shop_id}/cars";
     }
 
 }

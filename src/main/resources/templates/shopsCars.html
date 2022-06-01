@@ -27,29 +27,30 @@ Phone: <th th:text="${modelShops.getPhone}">shopName</th>
     </thead>
     <tbody>
     <tr th:each="car : ${modelCars}">
-
-        <c:url var="deleteButton" value="cars/deleteCar">
-        <c:param name="carId" value="${car.id}"/>
-    </c:url>
-
         <td><span th:text="${car.getBrand}"> Brand </span></td>
         <td><span th:text="${car.getYearOfProduce}"> Year </span></td>
         <td><span th:text="${car.getNetWorth}"> Cost </span></td>
-        <td> <button>
-            <a th:href="@{/cars/{id}(id=${car.getId()})}" th:text="INFO">info about cars</a>
-        </button> </td>
-        <td> <button>
-            <a th:href="@{/cars/addNewCar}" th:text="ADD">add new cars</a>
-        </button> </td>
-        <td> <button>
-            <a th:href="@{/cars/{id}/deleteCar(id=${car.getId()})}" th:text="DELETE">delete car</a>
-        </button> </td>
-        <td> <button>
-            <a th:href="@{/cars/{id}/updateCar(id=${car.getId()})}" th:text="UPDATE">update car</a>
-        </button> </td>
-<!--        <td><input type="button" value="add" onclick="window.location.href = '/cars/addNewCar'"/></td>-->
-<!--        <td><input type="button" value="delete" onclick="window.location.href = '/cars/deleteC'"/></td>-->
+        <td>
+            <form th:method="GET" th:action="@{/cars/{id}(id=${car.getId()})}">
+                <button type="submit">INFO</button>
+            </form>
+        </td>
+        <td>
+            <form th:method="POST" th:action="@{/cars/{id}/updateCar(id=${car.getId()})}">
+                <button type="submit">UPDATE</button>
+            </form>
+        </td>
+        <td>
+            <form th:method="DELETE" th:action="@{/shops/{shop_id}/car/{car_id}(shop_id=${modelShops.getId()}, car_id=${car.getId()})}">
+                <button type="submit">Delete</button>
+            </form>
+        </td>
     </tr>
+    <td>
+        <form th:method="GET" th:action="@{/shops/{id}/cars/add(id=${modelShops.getId()})}">
+            <button type="submit">ADD CAR TO SHOP</button>
+        </form>
+    </td>
 
 </table>
 </body>
