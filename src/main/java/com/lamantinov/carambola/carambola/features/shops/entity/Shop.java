@@ -45,7 +45,12 @@ public class Shop {
     }
 
     @ManyToMany(
-        cascade = CascadeType.ALL,
+        cascade = {
+            CascadeType.DETACH,
+            CascadeType.PERSIST,
+            CascadeType.MERGE,
+            CascadeType.REFRESH
+        },
         fetch = FetchType.LAZY
     )
     @JoinTable(

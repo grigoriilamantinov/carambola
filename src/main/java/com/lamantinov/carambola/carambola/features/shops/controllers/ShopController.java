@@ -1,10 +1,15 @@
 package com.lamantinov.carambola.carambola.features.shops.controllers;
 
+import com.lamantinov.carambola.carambola.features.cars.entity.Car;
+import com.lamantinov.carambola.carambola.features.cars.services.CarService;
 import com.lamantinov.carambola.carambola.features.shops.services.ShopService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
@@ -12,11 +17,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class ShopController {
 
     private final ShopService shopService;
+    private final CarService carService;
 
-    public ShopController(
-        final ShopService shopService
-    ) {
+    public ShopController(ShopService shopService, CarService carService) {
         this.shopService = shopService;
+        this.carService = carService;
     }
 
     @GetMapping()

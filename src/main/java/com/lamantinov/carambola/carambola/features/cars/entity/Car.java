@@ -10,6 +10,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -43,7 +44,8 @@ public class Car {
     @Column(name = "net_worth")
     private int netWorth;
 
-    @ManyToMany(fetch = FetchType.LAZY)
+    @ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.DETACH, CascadeType.PERSIST, CascadeType.MERGE,
+    CascadeType.REFRESH})
     @JoinTable(
         name = "cars_shops",
         joinColumns = @JoinColumn(name = "car_id"),
