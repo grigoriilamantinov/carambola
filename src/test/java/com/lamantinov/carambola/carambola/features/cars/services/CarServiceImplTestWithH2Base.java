@@ -48,7 +48,7 @@ class CarServiceImplTestWithH2Base {
         final List<ShopWithoutCarsDTO> shopWithoutCarsDTO = new ArrayList<>(){{
             add(new ShopWithoutCarsDTO(
                 1,
-                "Кира Ауто",
+                "Kira Auto",
                 "Moskovsky prospect building 1",
                 "8-812-523-21-23",
                 "kirochka@kiraauto.com")
