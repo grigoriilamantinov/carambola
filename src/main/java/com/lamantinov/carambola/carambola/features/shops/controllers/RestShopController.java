@@ -10,11 +10,11 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/shops/")
-public class ApiShopController {
+public class RestShopController {
 
     private final ShopService shopService;
 
-    public ApiShopController(
+    public RestShopController(
         final ShopService shopService
     ) {
         this.shopService = shopService;
