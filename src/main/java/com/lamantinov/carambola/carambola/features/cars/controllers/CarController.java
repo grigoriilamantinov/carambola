@@ -2,20 +2,14 @@ package com.lamantinov.carambola.carambola.features.cars.controllers;
 
 import com.lamantinov.carambola.carambola.features.cars.entity.Car;
 import com.lamantinov.carambola.carambola.features.cars.services.CarService;
-import com.lamantinov.carambola.carambola.features.cars.services.CarServiceImpl;
 import com.lamantinov.carambola.carambola.features.shops.services.ShopService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 @RequestMapping("/cars")
@@ -40,7 +34,7 @@ public class CarController {
     @GetMapping("/{id}")
     public String showOneCar(@PathVariable("id") int id, Model modelCar){
         modelCar.addAttribute("car", carService.getById(id));
-        return "carId";
+        return "car-id";
     }
 
     @RequestMapping("/addNewCar")
@@ -55,7 +49,6 @@ public class CarController {
         @PathVariable("id") int id,
         Model modelCar
     ){
-
         Car car = carService.getById(id);
         modelCar.addAttribute("car", car);
         return "car-info";
@@ -63,7 +56,6 @@ public class CarController {
 
     @PostMapping("/saveCar")
     public String saveCar(@ModelAttribute("car") Car car){
-
         if (car.getId()==0) {
             carService.save(car);
         } else {
