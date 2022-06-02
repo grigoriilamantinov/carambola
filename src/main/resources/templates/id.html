@@ -2,9 +2,10 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Shop</title>
+  <title>Shop Info</title>
 </head>
 <body>
+<h2> Information about shop: </h2>
 <table>
   <thead>
   <tr>
@@ -33,6 +34,12 @@
   </tr>
   </tbody>
 </table>
-
+<form th:method="GET" th:action="@{/shops/{shop_id}/cars(shop_id=${shop.getId()})}">
+  <button type="submit">GO TO SHOP</button>
+</form>
+<br>
+<form th:method="GET" th:action="@{/shops/}">
+  <button type="submit">BACK TO MAIN PAGE</button>
+</form>
 </body>
 </html>

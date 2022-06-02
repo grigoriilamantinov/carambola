@@ -69,6 +69,6 @@ public class CarController {
         } else {
             carService.updateCar(car);
         }
-        return "redirect:/cars";
+        return "redirect:/shops/";
     }
 }

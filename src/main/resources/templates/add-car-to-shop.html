@@ -5,16 +5,15 @@
     <title>Title</title>
 </head>
 <body>
-Hello
+<h2>Just push add button.</h2>
 <table>
-    <tr>
-    <th></th>
-    <th></th>
-    </tr>
     <div th:each="car : ${modelCar}">
         <tr>
             <td>
                 <th th:text="${car.getBrand}"></th>
+            </td>
+            <td>
+                <th th:text="${car.getYearOfProduce}"></th>
             </td>
             <td>
                 <form th:method="PUT" th:action="@{/shops/{shop_id}/add/{car_id}(shop_id=${modelShop.getId()}, car_id=${car.getId()})}">
@@ -24,7 +23,9 @@ Hello
         </tr>
     </div>
 </table>
-
-
+<br>
+<form th:method="GET" th:action="@{/shops/{shop_id}/cars(shop_id=${modelShop.getId()})}">
+    <button type="submit">BACK TO SHOP</button>
+</form>
 </body>
 </html>
