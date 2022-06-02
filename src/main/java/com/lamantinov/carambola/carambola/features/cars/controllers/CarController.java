@@ -61,12 +61,6 @@ public class CarController {
         return "car-info";
     }
 
-//    @PutMapping ("/putCar")
-//    public String putCar(@ModelAttribute("car") Car car){
-//        carService.save(car);
-//        return "redirect:/cars";
-//    }
-
     @PostMapping("/saveCar")
     public String saveCar(@ModelAttribute("car") Car car){
 

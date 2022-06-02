@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+Hello
+<table>
+    <tr>
+    <th></th>
+    <th></th>
+    </tr>
+    <div th:each="car : ${modelCar}">
+        <tr>
+            <td>
+                <th th:text="${car.getBrand}"></th>
+            </td>
+            <td>
+                <form th:method="PUT" th:action="@{/shops/{shop_id}/add/{car_id}(shop_id=${modelShop.getId()}, car_id=${car.getId()})}">
+                    <button type="submit">ADD</button>
+                </form>
+            </td>
+        </tr>
+    </div>
+</table>
+
+
+</body>
+</html>

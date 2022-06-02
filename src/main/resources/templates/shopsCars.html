@@ -46,8 +46,9 @@ Phone: <th th:text="${modelShops.getPhone}">shopName</th>
             </form>
         </td>
     </tr>
+
     <td>
-        <form th:method="GET" th:action="@{/shops/{id}/cars/add(id=${modelShops.getId()})}">
+        <form th:method="GET" th:action="@{/shops/{id}/addPage(id=${modelShops.getId()})}">
             <button type="submit">ADD CAR TO SHOP</button>
         </form>
     </td>

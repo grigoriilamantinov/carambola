@@ -3,6 +3,7 @@ package com.lamantinov.carambola.carambola.features.shops.services;
 import com.lamantinov.carambola.carambola.CarambolaApplication;
 import com.lamantinov.carambola.carambola.features.cars.dto.CarWithoutShopsDTO;
 import com.lamantinov.carambola.carambola.features.cars.entity.Car;
+import com.lamantinov.carambola.carambola.features.cars.services.CarService;
 import com.lamantinov.carambola.carambola.features.shops.dao.ShopRepository;
 import com.lamantinov.carambola.carambola.features.shops.dto.ShopWithCarsDTO;
 import com.lamantinov.carambola.carambola.features.shops.dto.ShopWithoutCarsDTO;
@@ -25,12 +26,14 @@ class ShopServiceImplTest {
     @Mock
     private ShopRepository shopRepository;
 
+    private CarService carService;
+
     private ShopService testable;
 
 
     @BeforeEach
     void setUp() {
-        testable = new ShopServiceImpl(shopRepository);
+        testable = new ShopServiceImpl(shopRepository, carService);
     }
 
     @Test

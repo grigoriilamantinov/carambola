@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.stream.Collectors;
@@ -22,7 +23,10 @@ public class ShopController {
     private final ShopService shopService;
     private final CarService carService;
 
-    public ShopController(ShopService shopService, CarService carService) {
+    public ShopController(
+        ShopService shopService,
+        CarService carService
+    ) {
         this.shopService = shopService;
         this.carService = carService;
     }
@@ -46,12 +50,6 @@ public class ShopController {
         return "id";
     }
 
-//    @GetMapping("/{id}/cars/add")
-//    public String addCarToShop(Model model) {
-//        model.addAttribute("cars", carService.getAllWithoutShopsInfo());
-//        return "addCarToShop";
-//    }
-
     @DeleteMapping("/{shop_id}/car/{car_id}")
     public String deleteCarFromShop(
         @PathVariable("shop_id") int shopId,
@@ -60,5 +58,26 @@ public class ShopController {
         shopService.deleteCarFromShop(carId, shopId);
         return "redirect:/shops/{shop_id}/cars";
     }
+
+    @PutMapping("/{shop_id}/add/{car_id}")
+    public String addCarIntoShop(
+        @PathVariable("shop_id") int shopId,
+        @PathVariable("car_id") int carId
+    ) {
+        shopService.addCarIntoShop(carId, shopId);
+        return "redirect:/shops/{shop_id}/addPage";
+    }
+
+    @GetMapping ("/{id}/addPage")
+    public String showAddPage(
+        @PathVariable("id") int shopId,
+        Model modelCar,
+        Model modelShop
+    ){
+        modelShop.addAttribute("modelShop", shopService.getById(shopId));
+        modelCar.addAttribute("modelCar", shopService.getCarAvailableForAdd(shopId));
+        return "add-car-to-shop";
+    }
+
 
 }
