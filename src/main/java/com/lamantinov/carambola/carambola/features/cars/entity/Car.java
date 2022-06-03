@@ -47,8 +47,15 @@ public class Car {
     @Column(name = "net_worth")
     private int netWorth;
 
-    @ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.DETACH, CascadeType.PERSIST, CascadeType.MERGE,
-    CascadeType.REFRESH})
+    @ManyToMany(
+        fetch = FetchType.LAZY,
+        cascade = {
+            CascadeType.DETACH,
+            CascadeType.PERSIST,
+            CascadeType.MERGE,
+            CascadeType.REFRESH
+        }
+    )
     @JoinTable(
         name = "cars_shops",
         joinColumns = @JoinColumn(name = "car_id"),
@@ -67,7 +74,7 @@ public class Car {
     @JoinColumn(name = "id", referencedColumnName = "car_id")
     private Owner owner;
 
-    public Car(int id, String brand, int yearOfProduce, int netWorth) {
+    public Car(Integer id, String brand, int yearOfProduce, int netWorth) {
         this.id = id;
         this.brand = brand;
         this.yearOfProduce = yearOfProduce;

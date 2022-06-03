@@ -69,9 +69,9 @@ public class ShopServiceImpl implements ShopService {
 
     @Override
     public void addCarIntoShop(final int carId, final int shopId) {
-        var shop = this.getById(shopId);
-        var addableCar = carService.getById(carId);
-        var newCarsList = shop.getCars();
+        final var shop = this.getById(shopId);
+        final var addableCar = carService.getById(carId);
+        final var newCarsList = shop.getCars();
         newCarsList.add(addableCar);
         shop.setCars(newCarsList);
         this.save(shop);
@@ -79,8 +79,8 @@ public class ShopServiceImpl implements ShopService {
 
     @Override
     public void deleteCarFromShop(final int carId, final  int shopId) {
-        var shop = this.getById(shopId);
-        var cars = shop.getCars().stream()
+        final var shop = this.getById(shopId);
+        final var cars = shop.getCars().stream()
             .filter(car -> car.getId() != carId)
             .collect(Collectors.toList());
         shop.setCars(cars);
@@ -89,15 +89,11 @@ public class ShopServiceImpl implements ShopService {
 
     @Override
     public List<Car> getCarAvailableForAdd(final int shopId) {
-        final var cars = carService.getAll();
-        final var currentShop = this.getById(shopId);
-        List<Car> availableCarsForAdd = new ArrayList<>();
-        for (Car car : cars) {
-            var shops = car.getShops();
-            if (!shops.contains(currentShop)) {
-                availableCarsForAdd.add(car);
-            }
-        }
-        return availableCarsForAdd;
+        final var carsIds = shopRepository.getById(shopId).getCars().stream()
+            .map(Car::getId)
+            .collect(Collectors.toList());
+        return carService.getAll().stream()
+            .filter(car -> !carsIds.contains(car.getId()))
+            .collect(Collectors.toList());
     }
 }

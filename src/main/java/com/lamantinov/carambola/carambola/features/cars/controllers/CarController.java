@@ -56,7 +56,7 @@ public class CarController {
 
     @PostMapping("/saveCar")
     public String saveCar(@ModelAttribute("car") final Car car){
-        if (car.getId()==0) {
+        if (car.getId() == 0) {
             carService.save(car);
         } else {
             carService.updateCar(car);

@@ -1,5 +1,7 @@
 package com.lamantinov.carambola.carambola.features.cars.controllers;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.lamantinov.carambola.carambola.features.cars.entity.Car;
 import com.lamantinov.carambola.carambola.features.shops.services.ShopService;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -31,10 +33,7 @@ class CarControllerIntegrationsTest {
                 MockMvcRequestBuilders.get(URL)
                     .contentType(MediaType.APPLICATION_JSON)
             )
-            .andExpect(status().isOk())
-            .andReturn()
-            .getResponse()
-            .getContentAsString();
+            .andExpect(status().isOk());
     }
 
     @Test
@@ -44,10 +43,7 @@ class CarControllerIntegrationsTest {
                 MockMvcRequestBuilders.get(URL)
                     .contentType(MediaType.APPLICATION_JSON)
             )
-            .andExpect(status().isOk())
-            .andReturn()
-            .getResponse()
-            .getContentAsString();
+            .andExpect(status().isOk());
     }
 
     @Test
@@ -57,10 +53,7 @@ class CarControllerIntegrationsTest {
                 MockMvcRequestBuilders.get(URL)
                     .contentType(MediaType.APPLICATION_JSON)
             )
-            .andExpect(status().isOk())
-            .andReturn()
-            .getResponse()
-            .getContentAsString();
+            .andExpect(status().isOk());
     }
 
     @Test
@@ -70,22 +63,21 @@ class CarControllerIntegrationsTest {
                 MockMvcRequestBuilders.get(URL)
                     .contentType(MediaType.APPLICATION_JSON)
             )
-            .andExpect(status().isOk())
-            .andReturn()
-            .getResponse()
-            .getContentAsString();
+            .andExpect(status().isOk());
     }
 
+//Trow exception
     @Test
     void shouldSaveCar() throws Exception {
         final String URL = "http://localhost:8080/cars/saveCar";
+        final var car = "{\"id\":100,\"brand\":\"BNW\",\"yearOfProduce\":2015,\"netWorth\":500000}";
+        final var car2 = new Car (101, "BNW", 2015, 500000);
         mockMvc.perform(
-                MockMvcRequestBuilders.get(URL)
+                MockMvcRequestBuilders.post(URL)
+                    .content(new ObjectMapper().writeValueAsString(car2))
                     .contentType(MediaType.APPLICATION_JSON)
+                    .accept(MediaType.APPLICATION_JSON)
             )
-            .andExpect(status().is4xxClientError())
-            .andReturn()
-            .getResponse()
-            .getContentAsString();
+            .andExpect(status().is3xxRedirection());
     }
 }
