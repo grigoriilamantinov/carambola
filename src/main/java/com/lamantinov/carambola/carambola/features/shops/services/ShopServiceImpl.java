@@ -6,6 +6,7 @@ import com.lamantinov.carambola.carambola.features.shops.dao.ShopRepository;
 import com.lamantinov.carambola.carambola.features.shops.dto.ShopWithCarsDTO;
 import com.lamantinov.carambola.carambola.features.shops.entity.Shop;
 import com.lamantinov.carambola.carambola.features.shops.dto.ShopWithoutCarsDTO;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -19,8 +20,8 @@ public class ShopServiceImpl implements ShopService {
     private final CarService carService;
 
     public ShopServiceImpl(
-        ShopRepository shopRepository,
-        CarService carService
+        @Autowired final ShopRepository shopRepository,
+        @Autowired final CarService carService
     ) {
         this.shopRepository = shopRepository;
         this.carService = carService;
@@ -67,7 +68,7 @@ public class ShopServiceImpl implements ShopService {
 
 
     @Override
-    public void addCarIntoShop(int carId, int shopId) {
+    public void addCarIntoShop(final int carId, final int shopId) {
         var shop = this.getById(shopId);
         var addableCar = carService.getById(carId);
         var newCarsList = shop.getCars();
@@ -77,7 +78,7 @@ public class ShopServiceImpl implements ShopService {
     }
 
     @Override
-    public void deleteCarFromShop(int carId, int shopId) {
+    public void deleteCarFromShop(final int carId, final  int shopId) {
         var shop = this.getById(shopId);
         var cars = shop.getCars().stream()
             .filter(car -> car.getId() != carId)
@@ -87,9 +88,9 @@ public class ShopServiceImpl implements ShopService {
     }
 
     @Override
-    public List<Car> getCarAvailableForAdd(int shopId) {
-        var cars = carService.getAll();
-        var currentShop = this.getById(shopId);
+    public List<Car> getCarAvailableForAdd(final int shopId) {
+        final var cars = carService.getAll();
+        final var currentShop = this.getById(shopId);
         List<Car> availableCarsForAdd = new ArrayList<>();
         for (Car car : cars) {
             var shops = car.getShops();
@@ -99,5 +100,4 @@ public class ShopServiceImpl implements ShopService {
         }
         return availableCarsForAdd;
     }
-
 }

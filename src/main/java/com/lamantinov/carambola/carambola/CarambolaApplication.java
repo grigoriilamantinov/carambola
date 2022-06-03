@@ -9,5 +9,4 @@ public class CarambolaApplication {
     public static void main(String[] args) {
         SpringApplication.run(CarambolaApplication.class, args);
     }
-
 }
