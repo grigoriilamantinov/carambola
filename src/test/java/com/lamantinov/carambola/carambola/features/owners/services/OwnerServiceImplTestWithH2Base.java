@@ -31,12 +31,12 @@ class OwnerServiceImplTestWithH2Base {
     @Test
     void shouldGetAllWithoutCarsInfo() {
         final List<OwnerWithoutCarsDTO> exceptedResult = new ArrayList<>(){{
-            add(new OwnerWithoutCarsDTO(1,"Михаил", "Шишкин"));
-            add(new OwnerWithoutCarsDTO(2,"Михаэль","Шумахер"));
-            add(new OwnerWithoutCarsDTO(3,"Капибар","Григорьевич"));
-            add(new OwnerWithoutCarsDTO(4,"Али", "Дон-Донович"));
-            add(new OwnerWithoutCarsDTO(5,"Имануил","Кант"));
-            add(new OwnerWithoutCarsDTO(6,"Иван","Иванов"));
+            add(new OwnerWithoutCarsDTO(1,"Michail", "Shishkin"));
+            add(new OwnerWithoutCarsDTO(2,"Mihael","Shumaher"));
+            add(new OwnerWithoutCarsDTO(3,"Capybar","Grigorievich"));
+            add(new OwnerWithoutCarsDTO(4,"Ali", "Don-Donovich"));
+            add(new OwnerWithoutCarsDTO(5,"Emanuil","Kunt"));
+            add(new OwnerWithoutCarsDTO(6,"Ivan","Ivaniv"));
         }};
         final var actualResult = ownerService.getAllWithoutCarsInfo();
         Assertions.assertEquals(exceptedResult, actualResult);
@@ -46,7 +46,7 @@ class OwnerServiceImplTestWithH2Base {
     void shouldGetOwnersCarById() {
         final int ownerId = 2;
 
-        final Owner owner = new Owner(2, "Михаэль", "Шумахер");
+        final Owner owner = new Owner(2, "Mihael", "Shumaher");
         final CarWithoutShopsDTO carWithoutShopsDTO = new CarWithoutShopsDTO(
             2,
             "Lada",
@@ -65,7 +65,7 @@ class OwnerServiceImplTestWithH2Base {
 
     @Test
     void shouldGetByIdWithoutCar() {
-        final var exceptedResult = new OwnerWithoutCarsDTO(2, "Михаэль", "Шумахер");
+        final var exceptedResult = new OwnerWithoutCarsDTO(2, "Mihael", "Shumaher");
         final int ownerId = 2;
         final var actualResult = ownerService.getByIdWithoutCar(ownerId) ;
         Assertions.assertEquals(exceptedResult, actualResult);

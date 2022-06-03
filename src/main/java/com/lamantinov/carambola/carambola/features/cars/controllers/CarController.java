@@ -18,27 +18,27 @@ public class CarController {
     private final ShopService shopService;
 
     public CarController(
-        CarService carService,
-        ShopService shopService
+        final CarService carService,
+        final ShopService shopService
     ) {
         this.carService = carService;
         this.shopService = shopService;
     }
 
     @GetMapping()
-    public String getShops(Model model) {
+    public String getShops(final Model model) {
         model.addAttribute("cars", carService.getAllWithoutShopsInfo());
         return "cars";
     }
 
     @GetMapping("/{id}")
-    public String showOneCar(@PathVariable("id") int id, Model modelCar){
+    public String showOneCar(@PathVariable("id") final int id, final Model modelCar){
         modelCar.addAttribute("car", carService.getById(id));
         return "car-id";
     }
 
     @RequestMapping("/addNewCar")
-    public String addNewCar(Model modelCar){
+    public String addNewCar(final Model modelCar){
         Car car = new Car();
         modelCar.addAttribute("car", car);
         return "car-info";
@@ -46,17 +46,17 @@ public class CarController {
 
     @RequestMapping("/{id}/updateCar")
     public String updateCar(
-        @PathVariable("id") int id,
-        Model modelCar
+        @PathVariable("id") final int id,
+        final Model modelCar
     ){
-        Car car = carService.getById(id);
+        final Car car = carService.getById(id);
         modelCar.addAttribute("car", car);
         return "car-info";
     }
 
     @PostMapping("/saveCar")
-    public String saveCar(@ModelAttribute("car") Car car){
-        if (car.getId()==0) {
+    public String saveCar(@ModelAttribute("car") final Car car){
+        if (car.getId() == 0) {
             carService.save(car);
         } else {
             carService.updateCar(car);

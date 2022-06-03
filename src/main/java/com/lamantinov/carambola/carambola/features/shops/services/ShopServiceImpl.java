@@ -6,6 +6,7 @@ import com.lamantinov.carambola.carambola.features.shops.dao.ShopRepository;
 import com.lamantinov.carambola.carambola.features.shops.dto.ShopWithCarsDTO;
 import com.lamantinov.carambola.carambola.features.shops.entity.Shop;
 import com.lamantinov.carambola.carambola.features.shops.dto.ShopWithoutCarsDTO;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -19,8 +20,8 @@ public class ShopServiceImpl implements ShopService {
     private final CarService carService;
 
     public ShopServiceImpl(
-        ShopRepository shopRepository,
-        CarService carService
+        @Autowired final ShopRepository shopRepository,
+        @Autowired final CarService carService
     ) {
         this.shopRepository = shopRepository;
         this.carService = carService;
@@ -67,19 +68,19 @@ public class ShopServiceImpl implements ShopService {
 
 
     @Override
-    public void addCarIntoShop(int carId, int shopId) {
-        var shop = this.getById(shopId);
-        var addableCar = carService.getById(carId);
-        var newCarsList = shop.getCars();
+    public void addCarIntoShop(final int carId, final int shopId) {
+        final var shop = this.getById(shopId);
+        final var addableCar = carService.getById(carId);
+        final var newCarsList = shop.getCars();
         newCarsList.add(addableCar);
         shop.setCars(newCarsList);
         this.save(shop);
     }
 
     @Override
-    public void deleteCarFromShop(int carId, int shopId) {
-        var shop = this.getById(shopId);
-        var cars = shop.getCars().stream()
+    public void deleteCarFromShop(final int carId, final  int shopId) {
+        final var shop = this.getById(shopId);
+        final var cars = shop.getCars().stream()
             .filter(car -> car.getId() != carId)
             .collect(Collectors.toList());
         shop.setCars(cars);
@@ -87,17 +88,12 @@ public class ShopServiceImpl implements ShopService {
     }
 
     @Override
-    public List<Car> getCarAvailableForAdd(int shopId) {
-        var cars = carService.getAll();
-        var currentShop = this.getById(shopId);
-        List<Car> availableCarsForAdd = new ArrayList<>();
-        for (Car car : cars) {
-            var shops = car.getShops();
-            if (!shops.contains(currentShop)) {
-                availableCarsForAdd.add(car);
-            }
-        }
-        return availableCarsForAdd;
+    public List<Car> getCarAvailableForAdd(final int shopId) {
+        final var carsIds = shopRepository.getById(shopId).getCars().stream()
+            .map(Car::getId)
+            .collect(Collectors.toList());
+        return carService.getAll().stream()
+            .filter(car -> !carsIds.contains(car.getId()))
+            .collect(Collectors.toList());
     }
-
 }

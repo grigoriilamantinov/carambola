@@ -31,7 +31,7 @@ class ShopServiceImplTestWithH2Base {
         final var exceptedResult = new ArrayList<>(){{
             add(new ShopWithoutCarsDTO(
                 1,
-                "Кира Ауто",
+                "Kira Auto",
                 "Moskovsky prospect building 1",
                 "8-812-523-21-23",
                 "kirochka@kiraauto.com")
@@ -45,7 +45,7 @@ class ShopServiceImplTestWithH2Base {
             );
             add(new ShopWithoutCarsDTO(
                 3,
-                "Е-мобилс",
+                "E-mobils",
                 "Enthusiasts Avenue 12",
                 "8-812-526-31-21",
                 "e-mobils@cash.com")
@@ -79,7 +79,7 @@ class ShopServiceImplTestWithH2Base {
         final int shopId = 1;
         final var exceptedResult = new ShopWithoutCarsDTO(
             1,
-            "Кира Ауто",
+            "Kira Auto",
             "Moskovsky prospect building 1",
             "8-812-523-21-23",
             "kirochka@kiraauto.com"

@@ -11,11 +11,11 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/cars/")
-public class ApiCarController {
+public class RestCarController {
 
     private final CarService carService;
 
-    public ApiCarController(
+    public RestCarController(
         @Autowired final CarService carService
     ) {
         this.carService = carService;

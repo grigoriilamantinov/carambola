@@ -39,7 +39,7 @@ public class CarServiceImpl implements CarService {
     }
 
     @Override
-    public void save(Car car) {
+    public void save(final Car car) {
         carRepository.save(car);
     }
 
@@ -54,7 +54,7 @@ public class CarServiceImpl implements CarService {
     }
 
     @Override
-    public void updateCar(Car car) {
+    public void updateCar(final Car car) {
         carRepository.saveAndFlush(car);
     }
 
@@ -62,5 +62,4 @@ public class CarServiceImpl implements CarService {
     public void delete(final int carId) {
         carRepository.deleteById(carId);
     }
-
 }

@@ -4,18 +4,19 @@ import com.lamantinov.carambola.carambola.features.shops.dto.ShopWithCarsDTO;
 import com.lamantinov.carambola.carambola.features.shops.entity.Shop;
 import com.lamantinov.carambola.carambola.features.shops.dto.ShopWithoutCarsDTO;
 import com.lamantinov.carambola.carambola.features.shops.services.ShopService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
 @RequestMapping("/api/shops/")
-public class ApiShopController {
+public class RestShopController {
 
     private final ShopService shopService;
 
-    public ApiShopController(
-        final ShopService shopService
+    public RestShopController(
+        @Autowired final ShopService shopService
     ) {
         this.shopService = shopService;
     }
