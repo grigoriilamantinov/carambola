@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:c="http://java.sun.com/JSP/Page">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1"
+      crossorigin="anonymous">
+<head>
+    <meta charset="UTF-8">
+    <title>Cars from shop</title>
+</head>
+<body>
+<h2>Сar showroom:</h2>
+Shop name: <th th:text="${modelShops.getShopName}">shopName</th>.
+Phone: <th th:text="${modelShops.getPhone}">shopName</th>
+<a th:href="@{/shops/{id}(id=${modelShops.getId()})}" th:text="Info"></a>
+<br><br>
+<h2>Available cars:</h2>
+
+<table>
+    <thead>
+    <tr>
+        <th> Brand </th>
+        <th> Year </th>
+        <th> Cost </th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="car : ${modelCars}">
+        <td><span th:text="${car.getBrand}"> Brand </span></td>
+        <td><span th:text="${car.getYearOfProduce}"> Year </span></td>
+        <td><span th:text="${car.getNetWorth}"> Cost </span></td>
+        <td>
+            <form th:method="GET" th:action="@{/cars/{id}(id=${car.getId()})}">
+                <button type="submit">INFO</button>
+            </form>
+        </td>
+        <td>
+            <form th:method="POST" th:action="@{/cars/{id}/updateCar(id=${car.getId()})}">
+                <button type="submit">UPDATE</button>
+            </form>
+        </td>
+        <td>
+            <form th:method="DELETE" th:action="@{/shops/{shop_id}/car/{car_id}(shop_id=${modelShops.getId()}, car_id=${car.getId()})}">
+                <button type="submit">Delete</button>
+            </form>
+        </td>
+    </tr>
+
+    <td>
+        <form th:method="GET" th:action="@{/shops/{id}/addPage(id=${modelShops.getId()})}">
+            <button type="submit">ADD CAR TO SHOP</button>
+        </form>
+    </td>
+
+</table>
+</body>
+</html>

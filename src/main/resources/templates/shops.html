@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1"
+      crossorigin="anonymous">
+<head>
+  <meta charset="UTF-8">
+  <title>Shop at Carambola</title>
+</head>
+<body>
+
+<h1> Welcome to our awesome CARambola! Service for cheking shops, cars and owners.</h1>
+<br>
+<br>
+<div th:each="shop : ${shops}">
+  <a th:href="@{/shops/{id}/cars(id=${shop.getId()})}" th:text="STOCK">info about cars into shop</a>
+  <a th:href="@{/shops/{id}(id=${shop.getId()})}" th:text="INFO">info about shop</a>
+  <th th:text="${shop.getShopName}">shopName</th>
+</div>
+
+</body>
+</html>

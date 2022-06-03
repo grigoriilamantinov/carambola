@@ -1,56 +1,66 @@
 package com.lamantinov.carambola.carambola.features.cars.controllers;
 
-import com.lamantinov.carambola.carambola.features.cars.dto.CarIntoShopsDTO;
-import com.lamantinov.carambola.carambola.features.cars.dto.CarWithoutShopsDTO;
 import com.lamantinov.carambola.carambola.features.cars.entity.Car;
 import com.lamantinov.carambola.carambola.features.cars.services.CarService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
+import com.lamantinov.carambola.carambola.features.shops.services.ShopService;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
-import java.util.List;
-
-@RestController
-@RequestMapping("/api/cars/")
+@Controller
+@RequestMapping("/cars")
 public class CarController {
-
     private final CarService carService;
+    private final ShopService shopService;
 
     public CarController(
-        @Autowired final CarService carService
+        CarService carService,
+        ShopService shopService
     ) {
         this.carService = carService;
+        this.shopService = shopService;
     }
 
     @GetMapping()
-    public List<CarWithoutShopsDTO> showAllCars() {
-        return carService.getAllWithoutShopsInfo();
+    public String getShops(Model model) {
+        model.addAttribute("cars", carService.getAllWithoutShopsInfo());
+        return "cars";
     }
 
     @GetMapping("/{id}")
-    public CarWithoutShopsDTO getCar(@PathVariable final int id) {
-        return carService.getCarsWithoutShopsById(id);
+    public String showOneCar(@PathVariable("id") int id, Model modelCar){
+        modelCar.addAttribute("car", carService.getById(id));
+        return "car-id";
     }
 
-    @GetMapping("/{id}/shops")
-    public CarIntoShopsDTO getCarIntoAllShops(@PathVariable final int id) {
-        return carService.getCarIntoShops(id);
-    }
-  
-    @PostMapping()
-    public int addNewCar(@RequestBody final Car car) {
-        carService.save(car);
-        return car.getId();
-    }
-  
-    @PutMapping()
-    public String updateCar(@RequestBody final Car car) {
-        carService.save(car);
-        return "Car " + car.getId() + " was updated";
+    @RequestMapping("/addNewCar")
+    public String addNewCar(Model modelCar){
+        Car car = new Car();
+        modelCar.addAttribute("car", car);
+        return "car-info";
     }
 
-    @DeleteMapping("/{id}")
-    public String deleteCar(@PathVariable final int id) {
-        carService.delete(id);
-        return "Car with ID = " + id + " was deleted";
+    @RequestMapping("/{id}/updateCar")
+    public String updateCar(
+        @PathVariable("id") int id,
+        Model modelCar
+    ){
+        Car car = carService.getById(id);
+        modelCar.addAttribute("car", car);
+        return "car-info";
+    }
+
+    @PostMapping("/saveCar")
+    public String saveCar(@ModelAttribute("car") Car car){
+        if (car.getId()==0) {
+            carService.save(car);
+        } else {
+            carService.updateCar(car);
+        }
+        return "redirect:/shops/";
     }
 }

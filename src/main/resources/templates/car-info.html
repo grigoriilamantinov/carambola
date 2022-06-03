@@ -1,0 +1,31 @@
+
+<!DOCTYPE html>
+<html lang="en" xmlns:form="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>New Car</title>
+</head>
+<body>
+<h2> Car info </h2>
+
+<form th:method="POST" th:action="@{/cars/saveCar}" th:object="${car}">
+
+    <label for="id">Id </label>
+    <input type="number" th:field="*{id}" id="id"/>
+    <br><br>
+    <label for="brand">Brand </label>
+    <input type="text" th:field="*{brand}" id="brand"/>
+    <br><br>
+    <label for="yearOfProduce">Year </label>
+    <input type="number" th:field="*{yearOfProduce}" id="yearOfProduce">
+    <br><br>
+    <label for="netWorth">Cost </label>
+    <input type="number" th:field="*{netWorth}" id="netWorth">
+    <br><br>
+    <label for="shops">Shops </label>
+    <input type="text" th:field="*{shops}" id="shops">
+
+    <input type="submit" value="ADD CAR">
+</form>
+</body>
+</html>

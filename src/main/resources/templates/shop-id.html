@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Shop Info</title>
+</head>
+<body>
+<h2> Information about shop: </h2>
+<table>
+  <thead>
+  <tr>
+    <th></th>
+    <th></th>
+  </tr>
+  </thead>
+  <tbody>
+  </tr>
+  <td> Shop name: </td>
+  <td th:text="${shop.getShopName}"></td>
+  </tr>
+  </tr>
+  <td> Address: </td>
+  <td th:text="${shop.getAddress}"> </td>
+  </tr>
+
+  </tr>
+  <td> Phone: </td>
+  <td th:text="${shop.getPhone}"></td>
+  </tr>
+
+  </tr>
+  <td> Email: </td>
+  <td th:text="${shop.getEmail}"></td>
+  </tr>
+  </tbody>
+</table>
+<form th:method="GET" th:action="@{/shops/{shop_id}/cars(shop_id=${shop.getId()})}">
+  <button type="submit">GO TO SHOP</button>
+</form>
+<br>
+<form th:method="GET" th:action="@{/shops/}">
+  <button type="submit">BACK TO MAIN PAGE</button>
+</form>
+</body>
+</html>

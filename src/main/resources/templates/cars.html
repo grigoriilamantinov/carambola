@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Cars st Shop</title>
+</head>
+<body>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Shop at Carambola</title>
+</head>
+<body>
+
+<h1> All available car </h1>
+<br>
+<button>
+    <a th:href="@{/cars/addNewCar}" th:text="ADD">add new cars</a>
+</button>
+<br>
+<br>
+<div th:each="car : ${cars}">
+  <a th:href="@{/cars/{id}(id=${car.getId()})}" th:text="INFO">info about cars</a>
+  <th th:text="${car.getBrand}"></th>
+</div>
+
+</body>
+</html>
+
+</body>
+</html>
