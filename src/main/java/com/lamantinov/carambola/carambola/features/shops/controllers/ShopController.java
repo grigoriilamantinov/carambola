@@ -2,6 +2,7 @@ package com.lamantinov.carambola.carambola.features.shops.controllers;
 
 import com.lamantinov.carambola.carambola.features.cars.services.CarService;
 import com.lamantinov.carambola.carambola.features.shops.services.ShopService;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -51,6 +52,7 @@ public class ShopController {
         model.addAttribute("shop", shopService.getById(id));
         return "shop-id";
     }
+
 
     @DeleteMapping("/{shop_id}/car/{car_id}")
     public String deleteCarFromShop(
