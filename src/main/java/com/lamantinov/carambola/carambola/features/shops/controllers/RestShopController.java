@@ -4,6 +4,7 @@ import com.lamantinov.carambola.carambola.features.shops.dto.ShopWithCarsDTO;
 import com.lamantinov.carambola.carambola.features.shops.entity.Shop;
 import com.lamantinov.carambola.carambola.features.shops.dto.ShopWithoutCarsDTO;
 import com.lamantinov.carambola.carambola.features.shops.services.ShopService;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -26,6 +27,7 @@ public class RestShopController {
         return shopService.getAllWithoutCarsInfo();
     }
 
+    @Tag(name="Get shop.", description="Getting info about shop by id")
     @GetMapping("/{id}")
     public ShopWithoutCarsDTO getShop(@PathVariable final int id) {
         return shopService.getShopWithoutCarsById(id);
@@ -37,7 +39,9 @@ public class RestShopController {
     }
 
     @PostMapping()
-    public int addNewShop(@RequestBody final Shop shop) {
+    public int addNewShop(
+        @RequestBody final Shop shop
+    ) {
         shopService.save(shop);
         return shop.getId();
     }
